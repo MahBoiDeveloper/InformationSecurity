@@ -3,7 +3,7 @@ using System.Text;
 
 namespace Tools
 {
-    class Stribog
+    class Streebog
     {
         #region Algorithm constants and variables
             // Вектор А (используется для X-преобразования)
@@ -27,7 +27,7 @@ namespace Tools
                 0x07e095624504536c, 0x8d70c431ac02a736, 0xc83862965601dd1b, 0x641c314b2b8ee083
             };
 
-            // Вектор Пи (используется для X-преобразования)
+            // Вектор Пи (используется для S-преобразования)
             private readonly byte[] Pi =
             {
                 0xFC, 0xEE, 0xDD, 0x11, 0xCF, 0x6E, 0x31, 0x16, 0xFB, 0xC4, 0xFA, 0xDA, 0x23, 0xC5, 0x04, 0x4D,
@@ -281,7 +281,7 @@ namespace Tools
             }
         #endregion
 
-        public Stribog() { }
+        public Streebog() { }
 
         /// <summary>
         /// Тоже самое, что и GetHash256.
