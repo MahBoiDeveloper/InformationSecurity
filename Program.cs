@@ -11,9 +11,11 @@ class Program
     static void Main(string[] args)
     {
         RSA rsa = new RSA();
+        List<int> tmp = new List<int>();
         List<string> list = new List<string>();
-        for (int i = 0; i < 20; i++) list.Add(rsa.GetPrimeBigInteger().ToString());
-        list.ForEach(x => Console.WriteLine("x = " + x));
+        for (int i = 0; i < 20; i++) tmp.Add(i);
+        tmp.AsParallel().ForAll(x => list.Add(rsa.GetPrimeBigInteger().ToString()));
+        list.ForEach(x => Console.WriteLine(x));
 
         //StreebogTest();
     }
