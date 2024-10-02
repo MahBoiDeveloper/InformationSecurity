@@ -9,10 +9,11 @@ using System.Threading.Tasks;
 
 namespace Tools
 {
+    // https://habr.com/ru/articles/188152/
     class Streebog
     {
         #region Algorithm constants and variables
-            // Вектор А (используется для X-преобразования)
+            // Вектор А (используется для L-преобразования)
             private readonly UInt64[] A =
             {
                 0x8e20faa72ba0b470, 0x47107ddd9b505a38, 0xad08b0e0c3282d1c, 0xd8045870ef14980e,
@@ -181,10 +182,7 @@ namespace Tools
         #endregion
 
         #region Transformations and other methods
-            private byte[] XTransformation(byte[] a, byte[] b)
-            {
-                return Xor512(a, b);
-            }
+            private byte[] XTransformation(byte[] a, byte[] b) => Xor512(a, b);
             private byte[] STransformation(byte[] arr)
             {
                 byte[] result = new byte[64];
@@ -221,8 +219,8 @@ namespace Tools
                         if (tempBits[j] != false)
                             t = t ^ A[j];
 
-                    byte[] ResPart = BitConverter.GetBytes(t).Reverse().ToArray();
-                    Array.Copy(ResPart, 0, result, i * 8, 8);
+                    byte[] resPart = BitConverter.GetBytes(t).Reverse().ToArray();
+                    Array.Copy(resPart, 0, result, i * 8, 8);
                 }
                 return result;
             }
@@ -343,9 +341,6 @@ namespace Tools
 
         private void GoHash()
         {
-            
-            int iBlockLen = inputByteArray.Length * 8;
-            
             byte[] state = new byte[64];
             Array.Copy(iv, state, 64);
 
@@ -363,6 +358,7 @@ namespace Tools
             int inc = 0;
 
             // Цикл блочного сжатия функции
+            int iBlockLen = inputByteArray.Length * 8;
             while (iBlockLen >= 512)
             {
                 inc++;
