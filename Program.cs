@@ -1,11 +1,11 @@
-﻿using System.Text;
+﻿//using Mpir.NET; // это говно не работает как надо, а ещё не диспозлиться как надо https://stackoverflow.com/questions/46355431/referenced-nuget-dll-not-found-working-visual-studio
+
+using System.Text;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
 using Tools;
-//using Mpir.NET; // это говно не работает как надо, а ещё не диспозлиться как надо https://stackoverflow.com/questions/46355431/referenced-nuget-dll-not-found-working-visual-studio
-
 class Program
 {
     static void Main(string[] args)
