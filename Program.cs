@@ -8,9 +8,10 @@ class Program
 {
     static void Main(string[] args)
     {
-        //RSATest();
+        RSATest();
         //StreebogTest();
-        TryGenerateProbablePrimesViaGithub();
+        //TryGenerateProbablePrimesViaGithub();
+
     }
     static void TryGenerateProbablePrimesViaGithub()
     {
@@ -40,7 +41,19 @@ class Program
         RSA rsa = new RSA();
         var tpl = rsa.GetPrimePair();
         var N = tpl.Item1 * tpl.Item2;
-        Console.WriteLine(N.GetBitLength());
+        var fi_N = (tpl.Item1 - 1) * (tpl.Item2 - 1);
+        var e = rsa.GetBigInteger(16384);
+        while
+        (!(
+            e.GetByteCount() == 16384 &&
+            BigInteger.One < e &&
+            e < fi_N &&
+            BigInteger.GreatestCommonDivisor(fi_N, e) == 1
+         )) 
+            e = rsa.GetBigInteger(16384);
 
+        //Console.WriteLine(N.GetBitLength());
+        //Console.WriteLine(fi_N.GetBitLength());
+        Console.WriteLine(e);
     }
 }
