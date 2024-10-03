@@ -17,7 +17,7 @@ class Program
         RSA rsa = new RSA();
         List<int> tmp = new List<int>();
         List<string> list = new List<string>();
-        for (int i = 0; i < 2; i++) tmp.Add(i);
+        for (int i = 0; i < 6; i++) tmp.Add(i);
         tmp.AsParallel().ForAll(x => list.Add(rsa.GetPrimeBigInteger().ToString()));
         list.ForEach(x => Console.WriteLine(x));
     }
