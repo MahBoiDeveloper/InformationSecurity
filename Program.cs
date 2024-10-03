@@ -1,5 +1,4 @@
-﻿//using Mpir.NET; // это говно не работает как надо, а ещё не диспозлиться как надо https://stackoverflow.com/questions/46355431/referenced-nuget-dll-not-found-working-visual-studio
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 
