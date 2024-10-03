@@ -1,6 +1,6 @@
-﻿using System.Diagnostics;
+﻿using System;
 using System.Numerics;
-using System;
+using System.Diagnostics;
 using System.Collections.Generic;
 
 namespace Tools
@@ -11,9 +11,9 @@ namespace Tools
         private const int BIT_LENGTH = 1024 * 8;
         private const int BITE_LENGTH = BIT_LENGTH / 8;
         private static readonly int POWER = Convert.ToInt32(Math.Log2(BIT_LENGTH));
-        private readonly int TWO_IN_2K8 = Convert.ToInt32(Math.Pow(Convert.ToDouble(2), Convert.ToDouble(POWER)));
+        private static readonly int TWO_IN_2K8 = Convert.ToInt32(Math.Pow(Convert.ToDouble(2), Convert.ToDouble(POWER)));
         private const int TEST_SAMPLES = 10;
-        private List<BigInteger> primes = new List<BigInteger>();
+        private static List<BigInteger> primes = new List<BigInteger>();
 
         private byte[] buff = new byte[BITE_LENGTH];
         private Random rng  = new Random();
@@ -66,7 +66,7 @@ namespace Tools
             Stopwatch gsw = Stopwatch.StartNew();
             UInt64 iter = 0;
 
-            while (!IsPrime(i) || !(BigInteger.Parse(i.ToString()).GetBitLength() == BIT_LENGTH))
+            while (!IsPrime(i) || !(BigInteger.Parse(i.ToString()).GetByteCount() == BITE_LENGTH))
             {
                 if (iter % 1000 == 0)
                 {
