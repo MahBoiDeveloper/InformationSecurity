@@ -9,9 +9,9 @@ class Program
 {
     static void Main(string[] args)
     {
-        RSATest();
+        //RSATest();
         //StreebogTest();
-        //TryGenerateProbablePrimesViaGithub();
+        TryGenerateProbablePrimesViaGithub();
     }
     static void TryGenerateProbablePrimesViaGithub()
     {
@@ -42,12 +42,25 @@ class Program
         var tpl = rsa.GetPrimePair();
         var N = tpl.Item1 * tpl.Item2;
         var fi_N = (tpl.Item1 - 1) * (tpl.Item2 - 1);
-        var e = rsa.GetPrimeBigInteger(16384 / 8);
+        var e = 131073;
         var temp = rsa.EuclidAlgorithm(fi_N, e);
         var x = temp.Item1 < temp.Item2 ? temp.Item1 : temp.Item2;
         var d = fi_N - x;
         //Console.WriteLine(N.GetBitLength());
         //Console.WriteLine(fi_N.GetBitLength());
         Console.WriteLine(e);
+    }
+
+    static BigInteger Power(BigInteger value, BigInteger pow)
+    {
+        BigInteger result = 1;
+        while (pow > 0)
+        {
+            if (pow % 2 == 1)
+                result *= value;
+            value *= value;
+            pow /= 2;
+        }
+        return result;
     }
 }
