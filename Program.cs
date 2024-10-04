@@ -4,6 +4,7 @@ using System.Numerics;
 using System.Collections.Generic;
 
 using Tools;
+using System.Xml.Linq;
 class Program
 {
     static void Main(string[] args)
@@ -11,7 +12,6 @@ class Program
         RSATest();
         //StreebogTest();
         //TryGenerateProbablePrimesViaGithub();
-
     }
     static void TryGenerateProbablePrimesViaGithub()
     {
@@ -42,16 +42,10 @@ class Program
         var tpl = rsa.GetPrimePair();
         var N = tpl.Item1 * tpl.Item2;
         var fi_N = (tpl.Item1 - 1) * (tpl.Item2 - 1);
-        var e = rsa.GetBigInteger(16384);
-        while
-        (!(
-            e.GetByteCount() == 16384 &&
-            BigInteger.One < e &&
-            e < fi_N &&
-            BigInteger.GreatestCommonDivisor(fi_N, e) == 1
-         )) 
-            e = rsa.GetBigInteger(16384);
-
+        var e = rsa.GetPrimeBigInteger(16384 / 8);
+        var temp = rsa.EuclidAlgorithm(fi_N, e);
+        var x = temp.Item1 < temp.Item2 ? temp.Item1 : temp.Item2;
+        var d = fi_N - x;
         //Console.WriteLine(N.GetBitLength());
         //Console.WriteLine(fi_N.GetBitLength());
         Console.WriteLine(e);
