@@ -227,7 +227,7 @@ namespace Tools
 
         public BigInteger GCD(BigInteger a, BigInteger b) => BigInteger.GreatestCommonDivisor(a, b);
 
-        public Tuple<BigInteger, BigInteger> EuclidAlgorithm(BigInteger a, BigInteger b)
+        public BigInteger EuclidAlgorithm(BigInteger a, BigInteger b)
         {
             BigInteger q, r, x, y, x1 = 0, x2 = 1,
                                    y1 = 1, y2 = 0;
@@ -246,7 +246,7 @@ namespace Tools
                 y1 = y;
             }
 
-            return new Tuple<BigInteger, BigInteger>(x2, y2);
+            return x2 < y2 ? x2 : y2;
         }
     }
 }

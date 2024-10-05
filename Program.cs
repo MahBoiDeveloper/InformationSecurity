@@ -45,12 +45,11 @@ class Program
         var N = tpl.Item1 * tpl.Item2;
         var fi_N = (tpl.Item1 - 1) * (tpl.Item2 - 1);
         var e = 131073;
-        var temp = rsa.EuclidAlgorithm(fi_N, e);
-        var x = temp.Item1 < temp.Item2 ? temp.Item1 : temp.Item2;
+        var x = rsa.EuclidAlgorithm(fi_N, e);
         var d = fi_N - x;
         //Console.WriteLine(N.GetBitLength());
         //Console.WriteLine(fi_N.GetBitLength());
-        Console.WriteLine(e);
+        Console.WriteLine(d);
     }
     static BigInteger Power(BigInteger value, BigInteger pow)
     {
