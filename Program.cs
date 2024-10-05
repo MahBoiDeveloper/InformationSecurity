@@ -4,11 +4,8 @@ using System.Numerics;
 using System.Collections.Generic;
 
 using Tools;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 class Program
 {
-    static RSA rsa = new RSA();
-    static Streebog sbg = new Streebog();
     static void Main(string[] args)
     {
         //Console.WriteLine(rsa.GetPrimeBigInteger());
@@ -16,10 +13,10 @@ class Program
         //RSATest();
         //StreebogTest();
         TryGenerateProbablePrimesViaGithub();
-
     }
     static void TryGenerateProbablePrimesViaGithub()
     {
+        RSA rsa = new RSA();
         List<int> tmp = new List<int>();
         List<string> list = new List<string>();
         for (int i = 0; i < 4; i++) tmp.Add(i);
@@ -28,6 +25,7 @@ class Program
     }
     static void StreebogTest()
     {
+        Streebog sbg = new Streebog();
         string tmp = "Hello World!";
         byte[] message =
         {
@@ -52,9 +50,11 @@ class Program
         //Console.WriteLine(N.GetBitLength());
         //Console.WriteLine(fi_N.GetBitLength());
         Console.WriteLine(d);
+        Console.WriteLine(d.GetBitLength());
     }
     static BigInteger FixBitLengthForPrimeBigInteger(BigInteger bigint)
     {
+        RSA rsa = new RSA();
         Int32 n = Convert.ToInt32(1024 * 8 - Convert.ToInt32(bigint.GetBitLength()));
         var qwe = bigint << n;
         qwe += BigInteger.One;
