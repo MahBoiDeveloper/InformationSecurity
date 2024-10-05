@@ -10,16 +10,16 @@ class Program
     {
         //RSATest();
         //StreebogTest();
-        //TryGenerateProbablePrimesViaGithub();
-        RSA r = new RSA();
-        Console.WriteLine(r.GetPrimeBigInteger());
+        TryGenerateProbablePrimesViaGithub();
+        //RSA r = new RSA();
+        //Console.WriteLine(r.GetPrimeBigInteger());
     }
     static void TryGenerateProbablePrimesViaGithub()
     {
         RSA rsa = new RSA();
         List<int> tmp = new List<int>();
         List<string> list = new List<string>();
-        for (int i = 0; i < 6; i++) tmp.Add(i);
+        for (int i = 0; i < 4; i++) tmp.Add(i);
         tmp.AsParallel().ForAll(x => list.Add(rsa.GetPrimeBigInteger().ToString()));
         list.ForEach(x => Console.WriteLine(x));
     }
