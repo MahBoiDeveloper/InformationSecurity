@@ -69,13 +69,12 @@ namespace Tools
             rng.NextBytes(buff);
             var res = new BigInteger(buff);
             int counter = 0;
-            while (res.GetBitLength() != BIT_LENGTH)
+            while (res.GetBitLength() < BIT_LENGTH)
             {
-                res = res << 1;
-                res += counter % 2 == 0 ? 0 : 1;
+                res = (res << 1) + 1;
                 counter++;
             }
-            return res;
+            return res.Sign == -1 ? res * BigInteger.MinusOne : res;
         }
 
         public BigInteger GetBigInteger(int length)
@@ -157,7 +156,7 @@ namespace Tools
                 return true;
 
             // если n < 2 или n четное - возвращаем false
-            if (n < 2 || n % 2 == 0)
+            if (n < 2 || n.IsEven)
                 return false;
 
             // представим n − 1 в виде (2^s)·t, где t нечётно, это можно сделать последовательным делением n - 1 на 2
@@ -165,7 +164,7 @@ namespace Tools
 
             int s = 0;
 
-            while (t % 2 == 0)
+            while (t.IsEven)
             {
                 t /= 2;
                 s += 1;

@@ -4,14 +4,15 @@ using System.Numerics;
 using System.Collections.Generic;
 
 using Tools;
-using System.Xml.Linq;
 class Program
 {
     static void Main(string[] args)
     {
         //RSATest();
         //StreebogTest();
-        TryGenerateProbablePrimesViaGithub();
+        //TryGenerateProbablePrimesViaGithub();
+        RSA r = new RSA();
+        Console.WriteLine(r.GetPrimeBigInteger());
     }
     static void TryGenerateProbablePrimesViaGithub()
     {
@@ -36,7 +37,7 @@ class Program
         Console.WriteLine(new Streebog().GetHash(message));
         Console.WriteLine(new Streebog().GetHash(tmp));
     }
-    static void RSATest() 
+    static void RSATest()
     {
         RSA rsa = new RSA();
         var tpl = rsa.GetPrimePair();
@@ -50,7 +51,6 @@ class Program
         //Console.WriteLine(fi_N.GetBitLength());
         Console.WriteLine(e);
     }
-
     static BigInteger Power(BigInteger value, BigInteger pow)
     {
         BigInteger result = 1;
