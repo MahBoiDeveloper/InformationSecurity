@@ -44,6 +44,7 @@ class Program
                     qwe += BigInteger.One;
                     bool res = rsa.IsProbablePrime(qwe, 10);
                     Console.WriteLine("i = " + i + ", bits = " + qwe.GetBitLength() + ", " + res);
+                    if (res) Console.WriteLine(qwe);
                 }
                 Console.WriteLine("----------------------------------------------------");
             }
