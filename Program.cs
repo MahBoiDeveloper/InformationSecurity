@@ -8,11 +8,10 @@ class Program
 {
     static void Main(string[] args)
     {
-        //Console.WriteLine(rsa.GetPrimeBigInteger());
-
-        //RSATest();
+        //Console.WriteLine(new RSA().GetPrimeBigInteger());
+        RSATest();
         //StreebogTest();
-        TryGenerateProbablePrimesViaGithub();
+        //TryGenerateProbablePrimesViaGithub();
     }
     static void TryGenerateProbablePrimesViaGithub()
     {
@@ -49,8 +48,8 @@ class Program
         var d = fi_N - x;
         //Console.WriteLine(N.GetBitLength());
         //Console.WriteLine(fi_N.GetBitLength());
-        Console.WriteLine(d);
-        Console.WriteLine(d.GetBitLength());
+        //Console.WriteLine(d);
+        //Console.WriteLine(d.GetBitLength());
     }
     static BigInteger FixBitLengthForPrimeBigInteger(BigInteger bigint)
     {
