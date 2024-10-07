@@ -4,6 +4,7 @@ using System.Numerics;
 using System.Collections.Generic;
 
 using Tools;
+using System.Text;
 class Program
 {
     static void Main(string[] args)
@@ -30,9 +31,13 @@ class Program
     static void RSATest()
     {
         RSA rsa = new RSA();
-        Console.WriteLine();
-        var tmp = rsa.Encrypt("Hello world!");
-        Console.WriteLine(tmp);
-        Console.WriteLine(rsa.Decrypt(tmp));
+        string msg = "Hello world!";
+        Console.WriteLine(msg);
+        //Console.WriteLine(Encoding.Default.GetBytes("Hello world!"));
+        var cipher = rsa.Encrypt("Hello world!");
+        Console.WriteLine(cipher);
+        Console.WriteLine("");
+        var msgfromcipher = rsa.Decrypt(cipher);
+        Console.WriteLine(msgfromcipher);
     }
 }
