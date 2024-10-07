@@ -7,6 +7,7 @@ using System.Text;
 namespace Tools
 {
     // https://habr.com/ru/articles/745820/
+    // https://ru.wikipedia.org/wiki/RSA
     class RSA
     {
         private const int BIT_LENGTH = 1024 * 8;
@@ -55,20 +56,26 @@ namespace Tools
             //Console.WriteLine("{d, N} = {" + closeExponent_D + ", " + multiplicationOfPAndQ_N + "}");
         }
 
-        public string Encrypt(string input) => Encrypt(Encoding.Default.GetBytes(input));
+        private BigInteger Encrypt(BigInteger input)               => FastPower(input, openExponent_E) % multiplicationOfPAndQ_N;
+        private BigInteger Encrypt(byte[] input)                   => Encrypt(new BigInteger(input));
+        public string      Encrypt(string input)                   => Encrypt(Encoding.Default.GetBytes(input)).ToString();
+        public string      EncryptFromByteArray(byte[] input)      => Encrypt(input).ToString();
+        public string      EncryptFromBigInteger(BigInteger input) => Encrypt(input).ToString();
+        public byte[]      EncryptAsByteArrays(byte[] input)       => Encrypt(input).ToByteArray();
+        public BigInteger  EncryptAsBigIntegers(BigInteger input)  => Encrypt(input);
+        public BigInteger  EncryptToBigInteger(byte[] input)       => Encrypt(input);
 
-        public string Encrypt(byte[] input) => Encoding.Default.GetString(
-                                                               (FastPower(new BigInteger(input), openExponent_E) % multiplicationOfPAndQ_N)
-                                                               .ToByteArray());
+        private BigInteger Decrypt(BigInteger input)               => BigInteger.ModPow(input, closeExponent_D, multiplicationOfPAndQ_N);
+        private BigInteger Decrypt(byte[] input)                   => Decrypt(new BigInteger(input));
+        public string      Decrypt(string input)                   => Decrypt(Encoding.Default.GetBytes(input)).ToString();
+        public string      DecryptFromByteArray(byte[] input)      => Decrypt(input).ToString();
+        public string      DecryptFromBigInteger(BigInteger input) => Decrypt(input).ToString();
+        public byte[]      DecryptAsByteArrays(byte[] input)       => Decrypt(input).ToByteArray();
+        public BigInteger  DecryptAsBigIntegers(BigInteger input)  => Decrypt(input);
+        public BigInteger  DecryptToBigInteger(byte[] input)       => Decrypt(input);
 
-        public string Decrypt(string input) => Decrypt(Encoding.Default.GetBytes(input));
-
-        public string Decrypt(byte[] input) => Encoding.Default.GetString(
-                                                               (FastPower(new BigInteger(input), closeExponent_D) % multiplicationOfPAndQ_N)
-                                                               .ToByteArray());
-
-        public Tuple<BigInteger, BigInteger> PublicKey() => new Tuple<BigInteger, BigInteger>(openExponent_E, multiplicationOfPAndQ_N);
-        public Tuple<BigInteger, BigInteger> PrivateKey() => new Tuple<BigInteger, BigInteger>(closeExponent_D, multiplicationOfPAndQ_N);
+        public Tuple<BigInteger, BigInteger> GetPublicKey() => new Tuple<BigInteger, BigInteger>(openExponent_E, multiplicationOfPAndQ_N);
+        public Tuple<BigInteger, BigInteger> GetPrivateKey() => new Tuple<BigInteger, BigInteger>(closeExponent_D, multiplicationOfPAndQ_N);
 
         private void CalculateKeys()
         {
@@ -264,7 +271,7 @@ namespace Tools
             return x2 < y2 ? x2 : y2;
         }
 
-        public BigInteger FastPower(BigInteger value, BigInteger pow)
+        private BigInteger FastPower(BigInteger value, BigInteger pow)
         {
             BigInteger result = BigInteger.One;
             while (pow > BigInteger.Zero)

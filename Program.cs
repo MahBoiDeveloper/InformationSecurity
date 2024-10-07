@@ -31,7 +31,6 @@ class Program
     {
         RSA rsa = new RSA();
         Console.WriteLine();
-        Console.WriteLine(rsa.FastPower(2, 10));
         var tmp = rsa.Encrypt("Hello world!");
         Console.WriteLine(tmp);
         Console.WriteLine(rsa.Decrypt(tmp));
