@@ -32,12 +32,15 @@ class Program
     {
         RSA rsa = new RSA();
         string msg = "Hello world!";
-        Console.WriteLine(msg);
-        //Console.WriteLine(Encoding.Default.GetBytes("Hello world!"));
+        Console.WriteLine("Original message: " + msg);
         var cipher = rsa.Encrypt("Hello world!");
-        Console.WriteLine(cipher);
-        Console.WriteLine("");
         var msgfromcipher = rsa.Decrypt(cipher);
-        Console.WriteLine(msgfromcipher);
+        Console.WriteLine("Deciphered message: " + msgfromcipher);
+
+        if (msg != msgfromcipher)
+        {
+            Console.WriteLine("Messages aren't equal!");
+            rsa.DebugPrint();
+        }
     }
 }
