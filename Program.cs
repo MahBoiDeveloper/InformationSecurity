@@ -9,7 +9,7 @@ class Program
 {
     static void Main(string[] args)
     {
-        RSATest();
+        //RSATest();
         //StreebogTest();
         //TryGenerateProbablePrimesViaGithub();
     }
@@ -33,9 +33,10 @@ class Program
         RSA rsa = new RSA();
         string msg = "Hello world!";
         Console.WriteLine("Original message: " + msg);
-        var cipher = rsa.Encrypt("Hello world!");
+        var cipher = rsa.Encrypt(msg);
         var msgfromcipher = rsa.Decrypt(cipher);
         Console.WriteLine("Deciphered message: " + msgfromcipher);
+        Console.WriteLine("Cipher: " +  cipher);
 
         if (msg != msgfromcipher)
         {
