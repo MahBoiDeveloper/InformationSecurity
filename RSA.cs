@@ -85,7 +85,10 @@ namespace Tools
                 multiplicationOfPAndQ_N = firstPrime_P * secondPrime_Q;
                 eulerFunctionValue_fiN = (firstPrime_P - 1) * (secondPrime_Q - 1);
                 closeExponent_D = eulerFunctionValue_fiN - BigInteger.Abs(EuclidAlgorithm(openExponent_E, eulerFunctionValue_fiN));
-                if ((closeExponent_D * openExponent_E) % eulerFunctionValue_fiN == 1) break;
+                if ((closeExponent_D * openExponent_E) % eulerFunctionValue_fiN == 1)
+                    break;
+                else
+                    DebugPrint();
             }
         }
 
