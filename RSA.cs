@@ -4,7 +4,7 @@ using System.Diagnostics;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Tools
+namespace InformationSecurity
 {
     // https://habr.com/ru/articles/745820/
     // https://ru.wikipedia.org/wiki/RSA

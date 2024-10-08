@@ -3,7 +3,7 @@ using System.Linq;
 using System.Numerics;
 using System.Collections.Generic;
 
-using Tools;
+using InformationSecurity;
 using System.Text;
 class Program
 {

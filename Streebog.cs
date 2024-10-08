@@ -7,7 +7,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Tools
+namespace InformationSecurity
 {
     // https://habr.com/ru/articles/188152/
     // https://vlsergey.github.io/infosec/8_4_Hesh_funktsija_Stribog_.html
