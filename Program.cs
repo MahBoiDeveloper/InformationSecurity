@@ -10,8 +10,7 @@ class Program
     static void Main(string[] args)
     {
         //RSATest();
-        //StreebogTest();
-        //TryGenerateProbablePrimesViaGithub();
+        StreebogTest();
     }
     static void StreebogTest()
     {
