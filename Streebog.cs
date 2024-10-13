@@ -294,9 +294,6 @@ namespace InformationSecurity
         public string GetHash(string src) => GetHash256(src);
         public string GetHash512(string src)
         {
-            // Если раньше был точно такой хеш, то не надо вычислять его
-            if (src == inputString) return strHash;
-
             inputByteArray = Encoding.Default.GetBytes(src);
             inputString = src;
 
@@ -315,8 +312,6 @@ namespace InformationSecurity
         public string GetHash256(string src)
         {
             IsHash512 = false;
-            // Если раньше был точно такой хеш, то не надо вычислять его
-            if (src == inputString) return strHash;
 
             inputByteArray = Encoding.Default.GetBytes(src);
             inputString = src;
