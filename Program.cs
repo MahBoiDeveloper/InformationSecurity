@@ -10,7 +10,8 @@ class Program
     static void Main(string[] args)
     {
         //RSATest();
-        StreebogTest();
+        //StreebogTest();
+        KuznechikTest();
     }
     static void StreebogTest()
     {
@@ -45,11 +46,11 @@ class Program
     }
     static void KuznechikTest()
     {
-        byte[] key_1 = {0x77, 0x66, 0x55, 0x44, 0x33, 0x22, 0x11, 0x00, 0xff, 0xee, 0xdd, 0xcc, 0xbb, 0xaa, 0x99, 0x88};
-        byte[] key_2 = {0xef, 0xcd, 0xab, 0x89, 0x67, 0x45, 0x23, 0x01, 0x10, 0x32, 0x54, 0x76, 0x98, 0xba, 0xdc, 0xfe};
-        byte[] msg = Encoding.Default.GetBytes("8899aabbccddeeff0077665544332211");
+        byte[] key = Convert.FromHexString("8899aabbccddeeff0011223344556677fedcba98765432100123456789abcdef");
+        byte[] msg = Convert.FromHexString("1122334455667700ffeeddccbbaa9988");
         
         Kuznechik kzn = new Kuznechik();
-
+        Console.WriteLine(Convert.ToHexString(kzn.Encrypt(msg, key)));
+        Console.WriteLine(Convert.ToHexString(kzn.Decrypt(kzn.Encrypt(msg, key), key)));
     }
 }

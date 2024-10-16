@@ -10,6 +10,7 @@ namespace InformationSecurity
     /// <summary>
     /// Подсказки по алгоритму:</br>
     /// 1. <a href="https://habr.com/ru/articles/459004/">https://habr.com/ru/articles/459004/</a><br/>
+    /// 2. <a href="https://www.cyberforum.ru/post11934437.html">https://www.cyberforum.ru/post11934437.html</a>
     /// <br/>
     /// Релизован режим простой замены (Electronic Codebook, ECB).
     /// </summary>
@@ -105,14 +106,14 @@ namespace InformationSecurity
         /// <summary>
         /// Массив для хранения констант.
         /// </summary>
-        private byte[,] C = new byte[32, 16];
-        /// <summary>
+        private byte[][] C = new byte[32][];
+        /// <summary>ы
         /// Массив для хранения ключей.
         /// </summary>
-        private byte[,] KEY = new byte[10, 64];
+        private byte[][] KEY = new byte[10][];
         #endregion
 
-        #region Mathematical transformations
+        #region Algorithm mathematics
         /// <summary>
         /// X-преобразование. Исключительное или 2х массивов.
         /// </summary>
@@ -125,21 +126,36 @@ namespace InformationSecurity
             return c;
         }
         /// <summary>
-        /// S-преобразование. Нелинейное преобразование из вектора Pi.
+        /// S-преобразование. Нелинейное преобразование из вектора Пи.
         /// </summary>
-        private byte[] STransformation(byte[] a)
+        private byte[] STransformation(byte[] in_data)
         {
-            int i;
-            byte[] result = new byte[a.Length];
-            for (i = 0; i < BLOCK_SIZE; i++)
+            byte[] out_data = new byte[BLOCK_SIZE];
+            for (int i = 0; i < BLOCK_SIZE; i++)
             {
-                int data = a[i];
+                int data = in_data[i];
                 if (data < 0)
                     data = data + 256;
                 
-                result[i] = PI[data];
+                out_data[i] = PI[data];
             }
-            return result;
+            return out_data;
+        }
+        /// <summary>
+        /// Обратное S-преобразование.
+        /// </summary>
+        private byte[] ReverseSTransformation(byte[] in_data)
+        {
+            byte[] out_data = new byte[in_data.Length];
+            for (int i = 0; i < BLOCK_SIZE; i++)
+            {
+                int data = in_data[i];
+                if (data < 0)
+                    data = data + 256;
+
+                out_data[i] = REVESRE_PI[data];
+            }
+            return out_data;
         }
 
         /// <summary>
@@ -202,24 +218,6 @@ namespace InformationSecurity
         }
 
         /// <summary>
-        /// Обратное S-преобразование.
-        /// </summary>
-        private byte[] ReverseSTransformation(byte[] in_data)
-        {
-            int i;
-            byte[] out_data = new byte[in_data.Length];
-            for (i = 0; i < BLOCK_SIZE; i++)
-            {
-                int data = in_data[i];
-                if (data < 0)
-                    data = data + 256;
-
-                out_data[i] = REVESRE_PI[data];
-            }
-            return out_data;
-        }
-
-        /// <summary>
         /// Обратное R-преобразование.
         /// </summary>
         private byte[] ReverseRTransformation(byte[] in_data)
@@ -252,99 +250,199 @@ namespace InformationSecurity
             return out_data;
         }
 
-        // функция расчета констант
-        private void CountConstants()
+        private void FTransformation(byte[] input1, byte[] input2, ref byte[] output1, ref byte[] output2, byte[] round_C)
         {
-            int i;
-            byte[,] iter_num = new byte[32, 16];
-            for (i = 0; i < 32; i++)
-            {
-                for (int j = 0; j < BLOCK_SIZE; j++)
-                    iter_num[i, j] = 0;
-                iter_num[i, 0] = (byte)(i + 1);
-            }
-            for (i = 0; i < 32; i++)
-                C[i] = LTransformation(iter_num[i]);
+            byte[] state = new byte[16];
+            state = XTransformation(input1, round_C);
+            state = STransformation(state);
+            state = LTransformation(state);
+            output1 = XTransformation(state, input2);
+            output2 = input1;
         }
-        // функция, выполняющая преобразования ячейки Фейстеля
-        private byte[,] FTransformation(byte[] in_key_1, byte[] in_key_2, byte[] iter_const)
-        {
-            byte[] tmp;
-            byte[] out_key_2 = in_key_1;
-            tmp = XTransformation(in_key_1, iter_const);
-            tmp = STransformation(tmp);
-            tmp = LTransformation(tmp);
-            byte[] out_key_1 = XTransformation(tmp, in_key_2);
-            byte[,] key = new byte[2,];
-            key[0,] = out_key_1;
-            key[1,] = out_key_2;
-            return key;
-        }
-        // функция расчета раундовых ключей
-        public void GOST_Kuz_Expand_Key(byte[] key_1, byte[] key_2)
-        {
-            int i;
 
-            byte[][] iter12 = new byte[2][];
-            byte[][] iter34 = new byte[2][];
-            CountConstants();
-            iter_key[0] = key_1;
-            iter_key[1] = key_2;
-            iter12[0] = key_1;
-            iter12[1] = key_2;
-            for (i = 0; i < 4; i++)
+        private void KeyGen(byte[] mas_key)
+        {
+            // Генерация раундовых констант
+            byte[][] iterNum = new byte[32][];
+            for (int i = 0; i < 32; i++)
             {
-                iter34 = FTransformation(iter12[0], iter12[1], C[0 + 8 * i]);
-                iter12 = FTransformation(iter34[0], iter34[1], C[1 + 8 * i]);
-                iter34 = FTransformation(iter12[0], iter12[1], C[2 + 8 * i]);
-                iter12 = FTransformation(iter34[0], iter34[1], C[3 + 8 * i]);
-                iter34 = FTransformation(iter12[0], iter12[1], C[4 + 8 * i]);
-                iter12 = FTransformation(iter34[0], iter34[1], C[5 + 8 * i]);
-                iter34 = FTransformation(iter12[0], iter12[1], C[6 + 8 * i]);
-                iter12 = FTransformation(iter34[0], iter34[1], C[7 + 8 * i]);
-
-                iter_key[2 * i + 2] = iter12[0];
-                iter_key[2 * i + 3] = iter12[1];
+                iterNum[i] = new byte[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, Convert.ToByte(i + 1) };
+                this.C[i] = LTransformation(iterNum[i]);
             }
+
+            // Генерация первых 2-х лючей
+            byte[] A = new byte[16];
+            for (int i = 0; i < 16; i++) A[i] = mas_key[i];
+            byte[] B = new byte[16];
+            int j = 0;
+            for (int i = 16; i < 32; i++)
+            {
+                B[j] = mas_key[i];
+                j++;
+            }
+            j = 0;
+            KEY[0] = B;
+            KEY[1] = A;
+
+            byte[] C = new byte[16];
+            byte[] D = new byte[16];
+
+            // Генерация остальных ключей
+            for (int i = 0; i < 4; i++)
+            {
+                FTransformation(A, B, ref C, ref D, this.C[0 + 8 * i]);
+                FTransformation(C, D, ref A, ref B, this.C[1 + 8 * i]);
+                FTransformation(A, B, ref C, ref D, this.C[2 + 8 * i]);
+                FTransformation(C, D, ref A, ref B, this.C[3 + 8 * i]);
+                FTransformation(A, B, ref C, ref D, this.C[4 + 8 * i]);
+                FTransformation(C, D, ref A, ref B, this.C[5 + 8 * i]);
+                FTransformation(A, B, ref C, ref D, this.C[6 + 8 * i]);
+                FTransformation(C, D, ref A, ref B, this.C[7 + 8 * i]);
+                KEY[2 * i + 2] = A;
+                KEY[2 * i + 3] = B;
+            }
+
+
         }
         #endregion
 
-        Kuznechik() { }
+        #region Other
+        private string LengthTo32Bytes(string str)
+        {
+            if (str.Length< 32)
+            {
+                int diff = 32 - str.Length;
+                int j = 0;
+                for (int i = str.Length; i< 32; i++)
+                {
+                    str += str.Substring(j, 1);
+                    if (j == str.Length - 1) j = 0;
+                    else j++;
+                }
+                return str;
+            }
+            else if (str.Length > 32)
+                return str = str.Substring(0, 32);
+            else
+                return str;
+        }
+        #endregion
+
+        public Kuznechik() { }
 
         #region Encrypting and decrypting
-        public byte[] Encrypt(byte[] block)
+        /// <summary>
+        /// Шифрование сообщения ключом.
+        /// </summary>
+        public byte[] Encrypt(byte[] arr, byte[] key)
         {
-            int i;
-            byte[] out_block = new byte[BLOCK_SIZE];
-            out_block = block;
-            for (i = 0; i < 9; i++)
+            key = Encoding.Default.GetBytes(LengthTo32Bytes(Encoding.Default.GetString(key)));
+            KeyGen(key);
+            int NumOfBlocks;  // Определение кол-ва блоков по 16 байт
+            int NumberOfNull; // Определение кол-ва недостающих байт последнего блока
+            byte[] OriginText = arr;
+
+            byte[] encrText = new byte[0]; // Массив для хранения зашифрованных байтов
+            if ((arr.Length % BLOCK_SIZE) == 0)
             {
-                out_block = XTransformation(iter_key[i], out_block);
-                out_block = STransformation(out_block);
-                out_block = LTransformation(out_block);
+                NumOfBlocks = arr.Length / BLOCK_SIZE;
+                Array.Resize(ref encrText, arr.Length);
             }
-            out_block = XTransformation(out_block, iter_key[9]);
-            return out_block;
+            else
+            {
+                NumOfBlocks = (arr.Length / BLOCK_SIZE) + 1;
+                NumberOfNull = NumOfBlocks * BLOCK_SIZE - arr.Length;
+                int StartLength = arr.Length;
+                Array.Resize(ref OriginText, OriginText.Length + NumberOfNull);
+                Array.Resize(ref encrText, OriginText.Length);
+                if (NumberOfNull == 1) OriginText[OriginText.Length - 1] = 0x80;
+                else
+                {
+                    for (int i = OriginText.Length - 1; i >= 0; i--)
+                    {
+                        if (i == OriginText.Length - 1)
+                        {
+                            OriginText[OriginText.Length - 1] = 0x81;
+                        }
+                        else if (OriginText[i] != 0)
+                        {
+                            OriginText[i + 1] = 0x01;
+                            break;
+                        }
+                    }
+                }
+            }
+            
+            // Операция зашифровки
+            for (int i = 0; i < NumOfBlocks; i++) 
+            {
+                byte[] block = new byte[BLOCK_SIZE];
+
+                for (int j = 0; j < BLOCK_SIZE; j++)
+                    block[j] = OriginText[i * BLOCK_SIZE + j];
+                
+                for (int j = 0; j < 9; j++)
+                {
+                    block = XTransformation(block, KEY[j]);
+                    block = STransformation(block);
+                    block = LTransformation(block);
+                }
+                
+                block = XTransformation(block, KEY[9]);
+                for (int j = 0; j < BLOCK_SIZE; j++)
+                    encrText[i * BLOCK_SIZE + j] = block[j];
+            }
+            return encrText;
         }
-        public byte[] Decript(byte[] block)
+
+        /// <summary>
+        /// Расшифрование сообщения ключом.
+        /// </summary>
+        public byte[] Decrypt(byte[] arr, byte[] key)
         {
-            int i;
-            byte[] out_block = new byte[BLOCK_SIZE];
-            out_block = block;
+            key = Encoding.Default.GetBytes(LengthTo32Bytes(Encoding.Default.GetString(key)));
+            KeyGen(key);
+            int NumOfBlocks = arr.Length / BLOCK_SIZE; // Определение кол-ва блоков по 16 байт
+            byte[] OriginText = arr;
+            byte[] decrText = new byte[arr.Length]; // Массив для хранения зашифрованных байтов
 
-            out_block = XTransformation(out_block, iter_key[9]);
-            for (i = 8; i >= 0; i--)
+            for (int i = 0; i < NumOfBlocks; i++)
             {
-                out_block = ReverseLTransformation(out_block);
-                out_block = ReverseSTransformation(out_block);
-                out_block = XTransformation(iter_key[i], out_block);
+                byte[] block = new byte[BLOCK_SIZE];
+                for (int j = 0; j < BLOCK_SIZE; j++)
+                    block[j] = OriginText[i * BLOCK_SIZE + j];
+                
+                block = XTransformation(block, KEY[9]);
+                for (int j = 8; j >= 0; j--)
+                {
+                    block = ReverseLTransformation(block);
+                    block = ReverseRTransformation(block);
+                    block = XTransformation(block, KEY[j]);
+                }
+                
+                for (int j = 0; j < BLOCK_SIZE; j++)
+                    decrText[i * 16 + j] = block[j];
+                
+                if (i == NumOfBlocks - 1 && (decrText[decrText.Length - 1] == 0x81 || decrText[decrText.Length - 1] == 0x80))
+                {
+                    if (decrText[decrText.Length - 1] == 0x81)
+                    {
+                        int Zeros = 0;
+                        for (int j = decrText.Length - 1; j > 0; j--)
+                        {
+                            if (decrText[j] == 0x81 || decrText[j] == 0x01 || decrText[j] == 0) Zeros++;
+                            else break;
+                        }
+                        Array.Resize(ref decrText, decrText.Length - Zeros);
+                    }
+                    if (decrText[decrText.Length - 1] == 0x80) Array.Resize(ref decrText, decrText.Length - 1);
+                }
             }
-            return out_block;
+            return decrText;
         }
 
-        public string Encrypt(string msg) => (new BigInteger(Encrypt(Encoding.Default.GetBytes(msg)))).ToString();
-
-        public string Decrypt(string cph) => Encoding.Default.GetString(Decrypt(BigInteger.Parse(cph).ToByteArray()));
+        public string Encrypt(string msg, string key) => Convert.ToHexString(Encrypt(Encoding.Default.GetBytes(msg), Encoding.Default.GetBytes(key)));
+        public string Decrypt(string cph, string key) => Convert.ToHexString(Decrypt(Convert.FromHexString(cph), Encoding.Default.GetBytes(key)));
         #endregion
     }
 }
