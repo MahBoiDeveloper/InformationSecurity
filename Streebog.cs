@@ -381,20 +381,6 @@ namespace InformationSecurity
                 iBlockLen -= 512;
             }
 
-            // Если блок меньше, чем 512 бит, то не надо использовать функцию сжатия.
-            //if (inputByteArray.Length * 8 >= 512)
-            //{
-            //    foreach (var currChunk in inputByteArray.Chunk(64))
-            //    {
-            //        inc++;
-            //        byte[] partOfOriginalArray = new byte[64];
-            //        currChunk.CopyTo(partOfOriginalArray, 0);
-            //        state = Compression(N, state, partOfOriginalArray);
-            //        N     = Modulo512(N, N_512.Reverse().ToArray());
-            //        Sigma = Modulo512(Sigma, currChunk);
-            //    }
-            //}
-
             byte[] copmressedArray = new byte[inputByteArray.Length - inc * 64];
             Array.Copy(inputByteArray, 0, copmressedArray, 0, inputByteArray.Length - inc * 64);
 
@@ -418,14 +404,14 @@ namespace InformationSecurity
             if(IsHash512)
             {
                 // Конвертим битовый массив в строчный хеш, удаляя при этом лишние минусы (ниже тоже самое)
-                strHash = BitConverter.ToString(state).Replace("-", string.Empty);
+                strHash = Convert.ToHexString(state);
             }
             else
             {
                 // Отличие от 512 в том, что были другие переменные, а теперь мы обрезаем хеш
                 byte[] h256 = new byte[32];
                 Array.Copy(state, 0, h256, 0, 32);
-                strHash = BitConverter.ToString(h256).Replace("-", string.Empty);
+                strHash = Convert.ToHexString(h256);
             }
         }
     }
