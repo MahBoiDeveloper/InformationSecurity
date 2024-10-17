@@ -55,11 +55,13 @@ class Program
     }
     static void KuznechikTest()
     {
-        byte[] key = Convert.FromHexString("8899aabbccddeeff0011223344556677fedcba98765432100123456789abcdef");
-        byte[] msg = Convert.FromHexString("1122334455667700ffeeddccbbaa9988");
-        
-        Kuznechik kzn = new Kuznechik();
-        Console.WriteLine(Convert.ToHexString(kzn.Encrypt(msg, key)));
-        Console.WriteLine(Convert.ToHexString(kzn.Decrypt(kzn.Encrypt(msg, key), key)));
+        byte[] key1 = Convert.FromHexString("8899aabbccddeeff0011223344556677");
+        byte[] key2 = Convert.FromHexString("fedcba98765432100123456789abcdef");
+        byte[] msg  = Convert.FromHexString("1122334455667700ffeeddccbbaa9988");
+        byte[] cip;
+        Kuznechik kzn = new Kuznechik(key1, key2);
+        Console.WriteLine("Original: " + Convert.ToHexString(msg));
+        Console.WriteLine("Cipher:   " + Convert.ToHexString(cip = kzn.Encrypt(msg)));
+        Console.WriteLine("Decipher: " + Convert.ToHexString(kzn.Decrypt(cip)));
     }
 }
