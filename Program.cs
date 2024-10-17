@@ -25,8 +25,17 @@ class Program
             0x34,0x33,0x32,0x31,0x30,0x39,0x38,0x37,0x36,0x35,0x34,0x33,0x32,0x31,0x30
         };
 
-        Console.WriteLine(sbg.GetHash(message));
-        Console.WriteLine(sbg.GetHash(tmp));
+        Console.WriteLine("Hashing 256-bit");
+        Console.WriteLine("Original msg: " + Convert.ToHexString(message));
+        Console.WriteLine("Hash: " + sbg.GetHash(message));
+        Console.WriteLine("Original msg: " + tmp);
+        Console.WriteLine("Hash: " + sbg.GetHash(tmp));
+        Console.WriteLine();
+        Console.WriteLine("Hashing 512-bit");
+        Console.WriteLine("Original msg: " + Convert.ToHexString(message));
+        Console.WriteLine("Hash: " + sbg.GetHash512(message));
+        Console.WriteLine("Original msg: " + tmp);
+        Console.WriteLine("Hash: " + sbg.GetHash512(tmp));
     }
     static void RSATest()
     {
