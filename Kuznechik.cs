@@ -18,6 +18,14 @@ namespace InformationSecurity
     {
         #region Constants
         /// <summary>
+        /// Первый ГОСТовый ключ.
+        /// </summary>
+        public readonly static byte[] FirstKey  = Convert.FromHexString("8899aabbccddeeff0011223344556677");
+        /// <summary>
+        /// Второй ГОСТовый ключ.
+        /// </summary>
+        public readonly static byte[] SecondKey = Convert.FromHexString("fedcba98765432100123456789abcdef");
+        /// <summary>
         /// Длина блока шифрования 128 бит (16 байт).
         /// </summary>
         private const int BLOCK_SIZE = 16;
@@ -292,6 +300,7 @@ namespace InformationSecurity
         }
         #endregion
 
+        public Kuznechik()                         => KeyGen(Kuznechik.FirstKey, Kuznechik.SecondKey);
         public Kuznechik(byte[] key1, byte[] key2) => KeyGen(key1, key2);
         public Kuznechik(string key1, string key2) => KeyGen(Encoding.Default.GetBytes(key1), Encoding.Default.GetBytes(key2));
 
@@ -299,19 +308,37 @@ namespace InformationSecurity
         /// <summary>
         /// Шифрование сообщения ключом.
         /// </summary>
-        public byte[] Encrypt(byte[] arr)
+        public byte[] Encrypt(byte[] input)
         {
-            int i;
-            byte[] out_blk = new byte[BLOCK_SIZE];
-            out_blk = arr;
-            for (i = 0; i < 9; i++)
+            
+            StringBuilder buff = new StringBuilder();
+
+            foreach (byte[] tmpArr in Split(input))
             {
-                out_blk = XTransformation(KEY[i], out_blk);
-                out_blk = STransformation(out_blk);
-                out_blk = LTransformation(out_blk);
+                byte[] out_blk;
+
+                // Корректировка с учётом длины
+                if (tmpArr.Length < BLOCK_SIZE)
+                {
+                    out_blk = new byte[BLOCK_SIZE];
+                    Array.Copy(tmpArr, out_blk, tmpArr.Length < BLOCK_SIZE ? tmpArr.Length : BLOCK_SIZE);
+                }
+                else
+                    out_blk = tmpArr;
+
+                for (int i = 0; i < 9; i++)
+                {
+                    out_blk = XTransformation(KEY[i], out_blk);
+                    out_blk = STransformation(out_blk);
+                    out_blk = LTransformation(out_blk);
+                }
+
+                out_blk = XTransformation(out_blk, KEY[9]);
+
+                buff.Append(Convert.ToHexString(out_blk));
             }
-            out_blk = XTransformation(out_blk, KEY[9]);
-            return out_blk;
+
+            return Convert.FromHexString(buff.ToString());
         }
 
         /// <summary>
@@ -336,5 +363,28 @@ namespace InformationSecurity
         //public string Encrypt(string msg, string key) => Convert.ToHexString(Encrypt(Encoding.Default.GetBytes(msg), Encoding.Default.GetBytes(key)));
         //public string Decrypt(string cph, string key) => Convert.ToHexString(Decrypt(Convert.FromHexString(cph), Encoding.Default.GetBytes(key)));
         #endregion
+
+        [Obsolete("Метод оставлен из-за сохранения говнокодовой базы. " +
+                  "Ни разу не использовался. Используйте перегрузку с массивами.", true)]
+        private List<List<byte>> Split(List<byte> arr)
+        {
+            var ret = new List<List<byte>>();
+            for (int i = 0; i < arr.Count; i += BLOCK_SIZE)
+                ret.Add(arr.Slice(i, BLOCK_SIZE));
+
+            return ret;
+        }
+
+        private byte[][] Split(byte[] arr)
+        {
+            var list = arr.ToList();
+
+            byte[][] ret = new byte[arr.Length / BLOCK_SIZE + (arr.Length % BLOCK_SIZE == 0 ? 0 : 1)][];
+
+            for (int i = 0; i < arr.Length; i += BLOCK_SIZE)
+                ret[i / BLOCK_SIZE] = list.Slice(i, i + BLOCK_SIZE > arr.Length ? arr.Length - i : BLOCK_SIZE).ToArray();
+
+            return ret;
+        }
     }
 }

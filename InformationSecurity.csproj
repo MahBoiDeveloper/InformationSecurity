@@ -3,6 +3,7 @@
     <OutputType>Exe</OutputType>
     <TargetFramework>net8</TargetFramework>
     <Platforms>AnyCPU;x64</Platforms>
+    <PublishAoT>true</PublishAoT>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="System.Security.Cryptography.OpenSsl" Version="5.0.0" />

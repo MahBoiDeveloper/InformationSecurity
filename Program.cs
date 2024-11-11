@@ -55,13 +55,18 @@ class Program
     }
     static void KuznechikTest()
     {
-        byte[] key1 = Convert.FromHexString("8899aabbccddeeff0011223344556677");
-        byte[] key2 = Convert.FromHexString("fedcba98765432100123456789abcdef");
-        byte[] msg  = Convert.FromHexString("1122334455667700ffeeddccbbaa9988");
-        byte[] cip;
-        Kuznechik kzn = new Kuznechik(key1, key2);
-        Console.WriteLine("Original: " + Convert.ToHexString(msg));
-        Console.WriteLine("Cipher:   " + Convert.ToHexString(cip = kzn.Encrypt(msg)));
-        Console.WriteLine("Decipher: " + Convert.ToHexString(kzn.Decrypt(cip)));
+        Kuznechik kzn = new Kuznechik();
+
+        byte[] msg =
+        //Encoding.Default.GetBytes("Привет");
+        //Convert.FromHexString("1122334455667700ffeeddccbbaa9988");
+        Encoding.Default.GetBytes("Бу! Испугался? Не бойся, я друг, я тебя не обижу. Иди сюда, иди ко мне, сядь рядом со мной, посмотри мне в глаза. Ты видишь меня? Я тоже тебя вижу. Давай смотреть друг на друга до тех пор, пока наши глаза не устанут. Ты не хочешь? Почему? Что-то не так?");
+
+        Console.WriteLine("msg.len = " + msg.Length);
+
+        byte[] cip = kzn.Encrypt(msg);
+        Console.WriteLine("Original: " + Encoding.Default.GetString(msg));
+        Console.WriteLine("Cipher:   " + Convert.ToHexString(cip));
+        Console.WriteLine("Decipher: " + Encoding.Default.GetString(kzn.Decrypt(cip)));
     }
 }
