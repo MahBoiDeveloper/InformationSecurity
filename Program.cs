@@ -58,7 +58,7 @@ class Program
         Kuznechik kzn = new Kuznechik();
 
         byte[] msg =
-        //Encoding.Default.GetBytes("Привет");
+        //Encoding.Default.GetBytes("Привет мир!");
         //Convert.FromHexString("1122334455667700ffeeddccbbaa9988");
         Encoding.Default.GetBytes("Бу! Испугался? Не бойся, я друг, я тебя не обижу. Иди сюда, иди ко мне, сядь рядом со мной, посмотри мне в глаза. Ты видишь меня? Я тоже тебя вижу. Давай смотреть друг на друга до тех пор, пока наши глаза не устанут. Ты не хочешь? Почему? Что-то не так?");
 

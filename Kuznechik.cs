@@ -310,21 +310,20 @@ namespace InformationSecurity
         /// </summary>
         public byte[] Encrypt(byte[] input)
         {
-            
             StringBuilder buff = new StringBuilder();
 
-            foreach (byte[] tmpArr in Split(input))
+            foreach (byte[] arr in Split(input))
             {
                 byte[] out_blk;
 
                 // Корректировка с учётом длины
-                if (tmpArr.Length < BLOCK_SIZE)
+                if (arr.Length < BLOCK_SIZE)
                 {
                     out_blk = new byte[BLOCK_SIZE];
-                    Array.Copy(tmpArr, out_blk, tmpArr.Length < BLOCK_SIZE ? tmpArr.Length : BLOCK_SIZE);
+                    Array.Copy(arr, out_blk, arr.Length);
                 }
                 else
-                    out_blk = tmpArr;
+                    out_blk = arr;
 
                 for (int i = 0; i < 9; i++)
                 {
@@ -344,20 +343,35 @@ namespace InformationSecurity
         /// <summary>
         /// Расшифрование сообщения ключом.
         /// </summary>
-        public byte[] Decrypt(byte[] arr)
+        public byte[] Decrypt(byte[] input)
         {
-            int i;
-            byte[] out_blk = new byte[BLOCK_SIZE];
-            out_blk = arr;
-
-            out_blk = XTransformation(out_blk, KEY[9]);
-            for (i = 8; i >= 0; i--)
+            StringBuilder buff = new StringBuilder();
+            
+            foreach (byte[] arr in Split(input))
             {
-                out_blk = ReverseLTransformation(out_blk);
-                out_blk = ReverseSTransformation(out_blk);
-                out_blk = XTransformation(KEY[i], out_blk);
+                byte[] out_blk;
+
+                // Корректировка с учётом длины
+                if (arr.Length < BLOCK_SIZE)
+                {
+                    out_blk = new byte[BLOCK_SIZE];
+                    Array.Copy(arr, out_blk, arr.Length);
+                }
+                else
+                    out_blk = arr;
+
+                out_blk = XTransformation(out_blk, KEY[9]);
+                for (int i = 8; i >= 0; i--)
+                {
+                    out_blk = ReverseLTransformation(out_blk);
+                    out_blk = ReverseSTransformation(out_blk);
+                    out_blk = XTransformation(KEY[i], out_blk);
+                }
+
+                buff.Append(Convert.ToHexString(out_blk));
             }
-            return out_blk;
+            
+            return Convert.FromHexString(buff.ToString());
         }
 
         //public string Encrypt(string msg, string key) => Convert.ToHexString(Encrypt(Encoding.Default.GetBytes(msg), Encoding.Default.GetBytes(key)));
