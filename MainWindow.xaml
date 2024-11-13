@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:InformationSecurity"
         mc:Ignorable="d"
         ResizeMode="CanMinimize"
-        Title="MainWindow"
+        Title="Лабка ИБ — Войти"
         Height="450" Width="800">
     <Grid>
         <Grid.RowDefinitions>
@@ -29,6 +29,7 @@
             Text="Логин" 
             GotFocus="TextBox_GotFocus" 
             LostFocus="TextBox_LostFocus"
+            TextChanged="TextBox_TextChanged"
             />
         <TextBox 
             Grid.Row="1" Grid.Column="1" 
