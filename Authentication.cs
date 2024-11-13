@@ -7,6 +7,9 @@ using System.Text.Json;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Security.Principal;
+using System.Security.Cryptography;
+using System.Runtime.Intrinsics.Arm;
+using System.Security.Policy;
 
 namespace InformationSecurity
 {
@@ -35,6 +38,43 @@ namespace InformationSecurity
                             return true;
 
             return false;
+        }
+
+        public static bool CheckLoginWithPassword(string login, string password)
+        {
+            foreach (var userdata in doc.RootElement.GetProperty("userdata").EnumerateArray())
+            {
+                if (userdata.GetProperty("login").ToString() != login)
+                    continue;
+
+                foreach (var salt in doc.RootElement.GetProperty("salt").EnumerateArray())
+                    if (GetSalted(userdata.GetProperty("password").ToString(), salt.ToString()) == GetSalted(password, salt.ToString()))
+                        return true;
+                    
+            }
+            
+
+            return false;
+        }
+
+        // SHA256(src) + SHA384(salt) -> SHA512 -> MD5
+        private static string GetSalted(string password, string salt)
+        {
+            MD5 md5 = MD5.Create();
+            SHA256 sha256 = SHA256.Create();
+            SHA384 sha384 = SHA384.Create();
+            SHA512 sha512 = SHA512.Create();
+
+            string hash_login;
+            string hash_password;
+            string hash;
+
+            hash_login = Convert.ToHexString(sha256.ComputeHash(Encoding.Default.GetBytes(password)));
+            hash_password = Convert.ToHexString(sha384.ComputeHash(Encoding.Default.GetBytes(salt)));
+
+            hash = Convert.ToHexString(md5.ComputeHash(sha512.ComputeHash(Convert.FromHexString(hash_login + hash_password))));
+
+            return hash;
         }
     }
 }

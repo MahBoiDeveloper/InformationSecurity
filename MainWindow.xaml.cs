@@ -32,7 +32,13 @@ namespace InformationSecurity
                 MessageBox.Show("Авторизация под пустым логином невозможна!", ProgramConstants._2FA_ERROR_HEADER);
                 return;
             }
-            
+
+            if (!Authentication.CheckLoginWithPassword(Login, Password))
+            {
+                MessageBox.Show(ProgramConstants.WRONG_LOGIN_OR_PASSWORD_ERROR_DESCTIPTION, ProgramConstants._2FA_ERROR_HEADER);
+                return;
+            }
+
             if (!Authentication.CheckLocalAccountForLogin(Login))
             {
                 MessageBox.Show(ProgramConstants.LOCAL_USER_ERROR_DESCTIPTION, ProgramConstants._2FA_ERROR_HEADER);

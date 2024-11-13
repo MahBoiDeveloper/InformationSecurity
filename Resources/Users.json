@@ -13,7 +13,7 @@
       "login": "admin",
       "password": "password",
       "allowed_local_account": "PC\\PC",
-      "codes": [ "0", "01", "02", "ИБ" ]
+      "codes": [ "1", "0", "01", "02", "ИБ" ]
     },
     {
       "login": "root",
