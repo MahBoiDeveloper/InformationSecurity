@@ -20,7 +20,6 @@ namespace InformationSecurity
     {
         private static string Login    = string.Empty;
         private static string Password = string.Empty;
-        private static Authentication Auth = new Authentication();
         public MainWindow()
         {
             InitializeComponent();
@@ -34,14 +33,14 @@ namespace InformationSecurity
                 return;
             }
             
-            if (!Auth.CheckLocalAccountForLogin(Login))
+            if (!Authentication.CheckLocalAccountForLogin(Login))
             {
                 MessageBox.Show(ProgramConstants.LOCAL_USER_ERROR_DESCTIPTION, ProgramConstants._2FA_ERROR_HEADER);
                 return;
             }
 
-            Registration rg = new Registration();
-            rg.Show();
+            NFA nfa = new NFA(Login);
+            nfa.Show();
 
             Close();
         }

@@ -10,21 +10,30 @@ using System.Security.Principal;
 
 namespace InformationSecurity
 {
-    class Authentication
+    static class Authentication
     {
-        public readonly JsonDocument doc = JsonDocument.Parse(File.ReadAllText(ProgramConstants.USERS_JSON));
+        public static readonly JsonDocument doc = JsonDocument.Parse(File.ReadAllText(ProgramConstants.USERS_JSON));
         
-        public Authentication() {}
+        static Authentication() {}
 
-        public bool CheckLocalAccountForLogin(string login)
+        public static bool CheckLocalAccountForLogin(string login)
         {
             foreach (var item in doc.RootElement.GetProperty("userdata").EnumerateArray())
-            {
                 if (item.GetProperty("allowed_local_account").ToString() == WindowsIdentity.GetCurrent().Name &&
                     item.GetProperty("login").ToString() == login)
                     return true;
-            }
             
+            return false;
+        }
+
+        public static bool CheckCodeForLogin(string login, string code)
+        {
+            foreach (var item in doc.RootElement.GetProperty("userdata").EnumerateArray())
+                if (item.GetProperty("login").ToString() == login)
+                    foreach (var elem in item.GetProperty("codes").EnumerateArray())
+                        if (elem.ToString() == code)
+                            return true;
+
             return false;
         }
     }
