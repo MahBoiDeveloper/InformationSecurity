@@ -1,14 +1,5 @@
-﻿using System.Text;
-using System.Windows;
-using System.Security;
+﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace InformationSecurity
 {
@@ -56,10 +47,15 @@ namespace InformationSecurity
             var s = sender as TextBox;
             if (s is null) return;
 
-            if (s.Name == "Логин")
-                Login = s.Text;
-            else
-                Password = s.Text;
+            Login = s.Text;
+        }
+
+        private void PasswordBox_PasswordChanged(object sender, RoutedEventArgs e)
+        {
+            var s = sender as PasswordBox;
+            if (s is null) return;
+
+            Password = s.Password;
         }
 
         private void TextBox_GotFocus(object sender, RoutedEventArgs e)

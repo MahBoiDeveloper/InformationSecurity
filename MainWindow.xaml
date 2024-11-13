@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:InformationSecurity"
         mc:Ignorable="d"
         ResizeMode="CanMinimize"
-        Title="Лабка ИБ — Войти"
+        Title="Лабка ИБ — Вход"
         Height="450" Width="800">
     <Grid>
         <Grid.RowDefinitions>
@@ -30,15 +30,13 @@
             LostFocus="TextBox_LostFocus"
             TextChanged="TextBox_TextChanged"
             />
-        <TextBox 
+        <PasswordBox 
             Grid.Row="1" Grid.Column="1" 
             VerticalAlignment="Center"
-            TextAlignment="Center"
             Name="Пароль"
-            Text="Пароль"
             GotFocus="TextBox_GotFocus"
             LostFocus="TextBox_LostFocus"
-            TextChanged="TextBox_TextChanged"
+            PasswordChanged="PasswordBox_PasswordChanged"
             />
         <Button 
             Grid.Row="1" Grid.Column="1"

@@ -37,5 +37,12 @@
             Content="Войти"
             Click="Button_Click"
             />
+        <Button 
+            Grid.Row="2" Grid.Column="2"
+            VerticalAlignment="Bottom"
+            HorizontalAlignment="Stretch"
+            Content="Разлогинится"
+            Click="Button_ClickLogOut"
+            />
     </Grid>
 </Window>

@@ -1,15 +1,8 @@
-﻿using System;
-using System.IO;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.IO;
 using System.Text;
 using System.Text.Json;
-using System.Threading.Tasks;
-using System.Windows;
 using System.Security.Principal;
 using System.Security.Cryptography;
-using System.Runtime.Intrinsics.Arm;
-using System.Security.Policy;
 
 namespace InformationSecurity
 {
@@ -53,7 +46,6 @@ namespace InformationSecurity
                     
             }
             
-
             return false;
         }
 
