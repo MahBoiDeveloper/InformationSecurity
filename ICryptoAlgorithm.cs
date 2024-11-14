@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace InformationSecurity
 {
-    internal interface ICryptoAlgorithm
+    public interface ICryptoAlgorithm
     {
         string Encrypt(string message);
         string Decrypt(string cipher);
