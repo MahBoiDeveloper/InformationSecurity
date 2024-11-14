@@ -9,5 +9,6 @@
         public static readonly string WRONG_LOGIN_OR_PASSWORD_ERROR_DESCTIPTION = "Логин или пароль содержит ошибку.";
 
         public static readonly string USERS_JSON = "Resources\\Users.json";
+        public static readonly string DATABASE_JSON = "Resources\\Database.json";
     }
 }

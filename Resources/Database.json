@@ -1,0 +1,39 @@
+{
+  "admin": {
+    "kuznechik": [
+      {
+        "first.key": "",
+        "second.key": "",
+        "message": "",
+        "cipher": ""
+      }
+    ],
+    "rsa": [
+      {
+        "first.key": "",
+        "second.key": "",
+        "message": "",
+        "cipher": ""
+      }
+    ]
+  },
+
+  "user": {
+    "kuznechik": [
+      {
+        "first.key": "",
+        "second.key": "",
+        "message": "",
+        "cipher": ""
+      }
+    ],
+    "rsa": [
+      {
+        "first.key": "",
+        "second.key": "",
+        "message": "",
+        "cipher": ""
+      }
+    ]
+  }
+}
