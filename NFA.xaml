@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:InformationSecurity"
         mc:Ignorable="d"
+        ResizeMode="CanMinimize"
         Title="Лабка ИБ — Код доступа"
         Height="450" Width="800">
     <Grid>

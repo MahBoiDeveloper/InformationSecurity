@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:InformationSecurity"
         mc:Ignorable="d"
-        Title="UserManager" Height="450" Width="800">
+        ResizeMode="CanMinimize"
+        Title="Лабка ИБ — Управление юзверями" Height="450" Width="800">
     <Grid ShowGridLines="True">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>

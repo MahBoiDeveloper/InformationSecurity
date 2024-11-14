@@ -30,10 +30,19 @@ namespace InformationSecurity
             if (s is null) return;
 
             s.Text =
-                (s.Text == "Логин") ||
-                (s.Text == "Пароль") ||
-                (s.Text == "Повторите пароль") ?
+                s.Text == s.ToolTip.ToString() ?
                     string.Empty :
+                    s.Text;
+        }
+
+        private void TextBox_LostFocus(object sender, RoutedEventArgs e)
+        {
+            var s = sender as TextBox;
+            if (s is null) return;
+
+            s.Text =
+                s.Text.Trim() == string.Empty ?
+                    s.ToolTip.ToString() :
                     s.Text;
         }
     }
