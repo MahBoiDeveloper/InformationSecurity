@@ -19,7 +19,13 @@ namespace InformationSecurity
         {
             if (Login == string.Empty || Login == "Логин")
             {
-                MessageBox.Show("Авторизация под пустым логином невозможна!", ProgramConstants._2FA_ERROR_HEADER);
+                MessageBox.Show(ProgramConstants.EMPTY_LOGIN_ERROR_DESCTIPTION, ProgramConstants._2FA_ERROR_HEADER);
+                return;
+            }
+
+            if (Authentication.CheckForSpecialSymbols(Login) || Authentication.CheckForSpecialSymbols(Password))
+            {
+                MessageBox.Show(ProgramConstants.SPEC_SYMBOLS_ERROR_DESCTIPTION, ProgramConstants._2FA_ERROR_HEADER);
                 return;
             }
 

@@ -1,5 +1,7 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
+using System.IO;
+using System.Text.Json;
 
 namespace InformationSecurity
 {
@@ -8,10 +10,13 @@ namespace InformationSecurity
     /// </summary>
     public partial class UserManager : Window
     {
-        public UserManager()
-        {
-            InitializeComponent();
-        }
+        JsonElement.ArrayEnumerator userdata = JsonDocument.
+                                               Parse(File.ReadAllText(ProgramConstants.USERS_JSON)).
+                                               RootElement.
+                                               GetProperty("userdata").
+                                               EnumerateArray();
+        public UserManager() => InitializeComponent();
+
 
         private void CreateUser_Click(object sender, RoutedEventArgs e)
         {
@@ -20,6 +25,14 @@ namespace InformationSecurity
 
             Registration rg = new Registration();
             rg.ShowDialog();
+        }
+
+        private void TextBlock_Initialized(object sender, EventArgs e)
+        {
+            foreach (var user in userdata)
+            {
+
+            }
         }
     }
 }

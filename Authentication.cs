@@ -3,13 +3,15 @@ using System.Text;
 using System.Text.Json;
 using System.Security.Principal;
 using System.Security.Cryptography;
+using System.Linq;
 
 namespace InformationSecurity
 {
     static class Authentication
     {
         public static readonly JsonDocument doc = JsonDocument.Parse(File.ReadAllText(ProgramConstants.USERS_JSON));
-        
+        public static readonly Random rng = new Random();
+
         static Authentication() {}
 
         public static bool CheckLocalAccountForLogin(string login)
@@ -40,12 +42,30 @@ namespace InformationSecurity
                 if (userdata.GetProperty("login").ToString() != login)
                     continue;
 
-                foreach (var salt in doc.RootElement.GetProperty("salt").EnumerateArray())
+                var salts = doc.RootElement.GetProperty("salt").EnumerateArray();
+                int i = 0;
+                int stop = rng.Next() % salts.Count();
+                foreach (var salt in salts)
+                {
+                    if (stop != i++)
+                        continue;
+
                     if (GetSalted(userdata.GetProperty("password").ToString(), salt.ToString()) == GetSalted(password, salt.ToString()))
                         return true;
+                }
                     
             }
             
+            return false;
+        }
+
+        public static bool CheckForSpecialSymbols(string src)
+        {
+            if (src.Contains('\'') || src.Contains('\"') || 
+                src.Contains('\\') || src.Contains('\"') || 
+                src.Contains('/') || src.Contains('|')) 
+                return true;
+
             return false;
         }
 

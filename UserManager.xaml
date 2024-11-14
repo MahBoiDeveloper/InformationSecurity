@@ -34,6 +34,7 @@
             <ColumnDefinition Width="133*"/>
         </Grid.ColumnDefinitions>
         
+        <!--#region шапка -->
         <TextBlock 
             Grid.Row="0" Grid.Column="0"
             Text="№"
@@ -70,7 +71,6 @@
             VerticalAlignment="Center"
             TextAlignment="Left"
             />
-
         <Button
             Grid.Row="0" Grid.Column="5"
             Name="CreateUser"
@@ -78,6 +78,44 @@
             HorizontalAlignment="Right"
             Content="Создать"
             Click="CreateUser_Click"
+            />
+        <!--#endregion-->
+        
+        <!--#region 1-ая строка -->
+        <TextBlock
+            Grid.Row="1" Grid.Column="0"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            TextAlignment="Center"
+            Text="1"
+            />
+        <TextBlock
+            Grid.Row="1" Grid.Column="1"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            TextAlignment="Center"
+            Text=""
+            />
+        <TextBlock
+            Grid.Row="1" Grid.Column="2"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            TextAlignment="Center"
+            Text=""
+            />
+        <TextBlock
+            Grid.Row="1" Grid.Column="3"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            TextAlignment="Center"
+            Text=""
+            />
+        <TextBlock
+            Grid.Row="1" Grid.Column="4"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            TextAlignment="Center"
+            Text=""
             />
         <Button
             Grid.Row="1" Grid.Column="5"
@@ -91,5 +129,107 @@
             HorizontalAlignment="Left"
             Content="Изменить"
             />
+        <!--#endregion-->
+        
+        <!--#region 2-ая строка -->
+        <TextBlock
+            Grid.Row="2" Grid.Column="0"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            TextAlignment="Center"
+            Text="2"
+            />
+        <TextBlock
+            Grid.Row="2" Grid.Column="1"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            TextAlignment="Center"
+            Text=""
+            />
+        <TextBlock
+            Grid.Row="2" Grid.Column="2"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            TextAlignment="Center"
+            Text=""
+            />
+        <TextBlock
+            Grid.Row="2" Grid.Column="3"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            TextAlignment="Center"
+            Text=""
+            />
+        <TextBlock
+            Grid.Row="2" Grid.Column="4"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            TextAlignment="Center"
+            Text=""
+            />
+        <Button
+            Grid.Row="2" Grid.Column="5"
+            VerticalAlignment="Center"
+            HorizontalAlignment="Right"
+            Content="Удалить"
+            />
+        <Button
+            Grid.Row="2" Grid.Column="5"
+            VerticalAlignment="Center"
+            HorizontalAlignment="Left"
+            Content="Изменить"
+            />
+        <!--#endregion-->
+        
+        <!--#region 3-ая строка -->
+        <TextBlock
+            Grid.Row="3" Grid.Column="0"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            TextAlignment="Center"
+            Text="3"
+            />
+        <TextBlock
+            Grid.Row="3" Grid.Column="1"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            TextAlignment="Center"
+            Text=""
+            />
+        <TextBlock
+            Grid.Row="3" Grid.Column="2"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            TextAlignment="Center"
+            Text=""
+            />
+        <TextBlock
+            Grid.Row="3" Grid.Column="3"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            TextAlignment="Center"
+            Text=""
+            />
+        <TextBlock
+            Grid.Row="3" Grid.Column="4"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            TextAlignment="Center"
+            Text=""
+            Initialized="TextBlock_Initialized"
+            />
+        <Button
+            Grid.Row="3" Grid.Column="5"
+            VerticalAlignment="Center"
+            HorizontalAlignment="Right"
+            Content="Удалить"
+            />
+        <Button
+            Grid.Row="3" Grid.Column="5"
+            VerticalAlignment="Center"
+            HorizontalAlignment="Left"
+            Content="Изменить"
+            />
+        <!--#endregion-->
     </Grid>
 </Window>
