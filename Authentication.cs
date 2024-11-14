@@ -49,7 +49,7 @@ namespace InformationSecurity
             return false;
         }
 
-        // SHA256(src) + SHA384(salt) -> SHA512 -> MD5
+        // SHA384(SHA256(src) + salt) -> SHA512 -> MD5
         private static string GetSalted(string password, string salt)
         {
             MD5 md5 = MD5.Create();
@@ -62,7 +62,7 @@ namespace InformationSecurity
             string hash;
 
             hash_login = Convert.ToHexString(sha256.ComputeHash(Encoding.Default.GetBytes(password)));
-            hash_password = Convert.ToHexString(sha384.ComputeHash(Encoding.Default.GetBytes(salt)));
+            hash_password = Convert.ToHexString(sha384.ComputeHash(Encoding.Default.GetBytes(hash_login + salt)));
 
             hash = Convert.ToHexString(md5.ComputeHash(sha512.ComputeHash(Convert.FromHexString(hash_login + hash_password))));
 
