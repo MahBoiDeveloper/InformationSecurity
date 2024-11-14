@@ -25,26 +25,42 @@
             VerticalAlignment="Top"
             HorizontalAlignment="Stretch"
             TextAlignment="Center"
-            Text="Логин"/>
+            Text="Логин"
+            />
         <TextBox 
             Grid.Row="1" Grid.Column="1" 
             VerticalAlignment="Center"
             HorizontalAlignment="Stretch"
             TextAlignment="Center"
-            Text="Пароль" />
+            Text="Пароль"
+            />
         <TextBox 
             Grid.Row="1" Grid.Column="1" 
             VerticalAlignment="Bottom"
             HorizontalAlignment="Stretch"
             TextAlignment="Center"
-            Text="Повторите пароль" />
-        <Button Grid.Row="2" Grid.Column="1"
+            Text="Повторите пароль"
+            />
+        <TextBox 
+            Grid.Row="2" Grid.Column="1"
+            Margin="0, 10, 0, 0"
+            VerticalAlignment="Top"
+            HorizontalAlignment="Stretch"
+            TextAlignment="Center"
+            Text="Код доступа"
+            />
+
+        <Button 
+            Grid.Row="2" Grid.Column="1"
             VerticalAlignment="Center"
             HorizontalAlignment="Left"
-            Content="Зарегистрировать...." />
-        <Button Grid.Row="2" Grid.Column="1"
+            Content="Зарегистрировать...."
+            />
+        <Button 
+            Grid.Row="2" Grid.Column="1"
             VerticalAlignment="Center"
             HorizontalAlignment="Right"
-            Content="... и войти" />
+            Content="... и войти"
+            />
     </Grid>
 </Window>

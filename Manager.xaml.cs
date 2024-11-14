@@ -31,8 +31,8 @@ namespace InformationSecurity
             var s = sender as Button;
             if (s == null) return;
 
-            Registration mainWindow = new Registration();
-            mainWindow.Show();
+            UserManager um = new UserManager();
+            um.Show();
             Close();
         }
 
