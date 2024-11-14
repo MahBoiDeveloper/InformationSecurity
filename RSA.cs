@@ -6,7 +6,7 @@ namespace InformationSecurity
 {
     // https://habr.com/ru/articles/745820/
     // https://ru.wikipedia.org/wiki/RSA
-    class RSA
+    class RSA : ICryptoAlgorithm
     {
         private readonly List<BigInteger> PRIMES = new List<BigInteger>
         {
@@ -61,14 +61,14 @@ namespace InformationSecurity
         private BigInteger openExponent_E = 65537;
         private BigInteger closeExponent_D;
 
-        public RSA()                                               => CalculateKeys();
-        private BigInteger Encrypt(BigInteger input)               => BigInteger.ModPow(input, openExponent_E, multiplicationOfPAndQ_N);
-        private BigInteger Encrypt(byte[] input)                   => Encrypt(new BigInteger(input));
-        public string      Encrypt(string input)                   => Encrypt(Encoding.Default.GetBytes(input)).ToString();
+        public RSA()                                 => CalculateKeys();
+        private BigInteger Encrypt(BigInteger input) => BigInteger.ModPow(input, openExponent_E, multiplicationOfPAndQ_N);
+        public  byte[]     Encrypt(byte[] input)     => Encrypt(new BigInteger(input)).ToByteArray();
+        public  string     Encrypt(string input)     => new BigInteger(Encrypt(Encoding.Default.GetBytes(input))).ToString();
 
-        private BigInteger Decrypt(BigInteger input)               => BigInteger.ModPow(input, closeExponent_D, multiplicationOfPAndQ_N);
-        private BigInteger Decrypt(byte[] input)                   => Decrypt(new BigInteger(input));
-        public string      Decrypt(string input)                   => Encoding.Default.GetString(Decrypt(BigInteger.Parse(input)).ToByteArray());
+        private BigInteger Decrypt(BigInteger input) => BigInteger.ModPow(input, closeExponent_D, multiplicationOfPAndQ_N);
+        public  byte[]     Decrypt(byte[] input)     => Decrypt(new BigInteger(input)).ToByteArray();
+        public  string     Decrypt(string input)     => Encoding.Default.GetString(Decrypt(BigInteger.Parse(input)).ToByteArray());
 
         public Tuple<BigInteger, BigInteger> GetPublicKey() => new Tuple<BigInteger, BigInteger>(openExponent_E, multiplicationOfPAndQ_N);
         public Tuple<BigInteger, BigInteger> GetPrivateKey() => new Tuple<BigInteger, BigInteger>(closeExponent_D, multiplicationOfPAndQ_N);

@@ -9,7 +9,7 @@ namespace InformationSecurity
     /// <br/>
     /// Релизован режим простой замены (Electronic Codebook, ECB).
     /// </summary>
-    class Kuznechik
+    class Kuznechik : ICryptoAlgorithm
     {
         #region Constants
         /// <summary>
@@ -369,8 +369,8 @@ namespace InformationSecurity
             return Convert.FromHexString(buff.ToString());
         }
 
-        //public string Encrypt(string msg, string key) => Convert.ToHexString(Encrypt(Encoding.Default.GetBytes(msg), Encoding.Default.GetBytes(key)));
-        //public string Decrypt(string cph, string key) => Convert.ToHexString(Decrypt(Convert.FromHexString(cph), Encoding.Default.GetBytes(key)));
+        public string Encrypt(string msg) => Convert.ToHexString(Encrypt(Encoding.Default.GetBytes(msg)));
+        public string Decrypt(string cph) => Convert.ToHexString(Decrypt(Convert.FromHexString(cph)));
         #endregion
 
         [Obsolete("Метод оставлен из-за сохранения говнокодовой базы. " +
