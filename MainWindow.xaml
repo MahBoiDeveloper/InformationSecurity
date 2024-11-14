@@ -42,6 +42,7 @@
             Grid.Row="1" Grid.Column="1"
             VerticalAlignment="Bottom"
             Content="Войти"
+            IsDefault="True"
             Click="Button_Click"
             />
     </Grid>

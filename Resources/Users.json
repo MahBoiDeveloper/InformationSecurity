@@ -15,11 +15,19 @@
       "allowed_local_account": "PC\\PC",
       "codes": [ "1", "0", "01", "02", "ИБ" ]
     },
+
     {
       "login": "root",
       "password": "password",
       "allowed_local_account": "",
       "codes": [ "0", "01", "02", "ИБ" ]
+    },
+
+    {
+      "login": "user",
+      "password": "1",
+      "allowed_local_account": "PC\\PC",
+      "codes": [ "1", "0", "01", "02", "ИБ" ]
     }
   ]
 }

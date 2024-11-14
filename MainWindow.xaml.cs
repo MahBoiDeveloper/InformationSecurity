@@ -3,7 +3,6 @@ using System.Windows.Controls;
 
 namespace InformationSecurity
 {
-    
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>

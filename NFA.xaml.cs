@@ -30,7 +30,7 @@ namespace InformationSecurity
                 return;
             }
 
-            Manager mng = new Manager();
+            Manager mng = new Manager(Login);
             mng.Show();
 
             Close();

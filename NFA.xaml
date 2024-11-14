@@ -35,6 +35,7 @@
             VerticalAlignment="Bottom"
             HorizontalAlignment="Stretch"
             Content="Войти"
+            IsDefault="True"
             Click="Button_Click"
             />
         <Button 
@@ -42,6 +43,7 @@
             VerticalAlignment="Bottom"
             HorizontalAlignment="Stretch"
             Content="Разлогинится"
+            IsCancel="True"
             Click="Button_ClickLogOut"
             />
     </Grid>

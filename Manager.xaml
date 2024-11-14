@@ -37,8 +37,9 @@
             Grid.Row="0" Grid.Column="0"
             VerticalAlignment="Top"
             HorizontalAlignment="Stretch"
-            Name="Стрибог"
-            Content="Стрибог"
+            Name="ЭЦП"
+            Content="ЭЦП"
+            IsEnabled="False"
             />
         <Button
             Grid.Row="2" Grid.Column="2"
@@ -46,6 +47,7 @@
             HorizontalAlignment="Stretch"
             Name="Разлогинится"
             Content="Разлогинится"
+            IsCancel="True"
             Click="Button_ClickLogOut"
             />
         <Button
@@ -54,6 +56,8 @@
             HorizontalAlignment="Stretch"
             Name="НастройкиПользователей"
             Content="Настройки пользователей"
+            Click="Button_ClickUserManagement"
+            Initialized="Button_InitializedUserManagement"
             />
     </Grid>
 </Window>
