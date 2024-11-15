@@ -3,233 +3,28 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:toolkit="http://schemas.microsoft.com/wpf/2008/toolkit"
         xmlns:local="clr-namespace:InformationSecurity"
         mc:Ignorable="d"
-        ResizeMode="CanMinimize"
-        Title="Лабка ИБ — Управление юзверями" Height="450" Width="800">
-    <Grid ShowGridLines="True">
+        Title="Лабка ИБ — Управление юзверями" Height="450" Width="800" >
+    <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="29*"/>
-            <RowDefinition Height="29*"/>
-            <RowDefinition Height="29*"/>
-            <RowDefinition Height="29*"/>
-            <RowDefinition Height="29*"/>
-            <RowDefinition Height="29*"/>
-            <RowDefinition Height="29*"/>
-            <RowDefinition Height="29*"/>
-            <RowDefinition Height="29*"/>
-            <RowDefinition Height="29*"/>
-            <RowDefinition Height="29*"/>
-            <RowDefinition Height="29*"/>
-            <RowDefinition Height="29*"/>
-            <RowDefinition Height="29*"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition/>
         </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="40*"/>
-            <ColumnDefinition Width="180*"/>
-            <ColumnDefinition Width="180*"/>
-            <ColumnDefinition Width="133*"/>
-            <ColumnDefinition Width="133*"/>
-            <ColumnDefinition Width="133*"/>
-        </Grid.ColumnDefinitions>
-        
-        <!--#region шапка -->
-        <TextBlock 
-            Grid.Row="0" Grid.Column="0"
-            Text="№"
-            VerticalAlignment="Center"
-            TextAlignment="Center"
-            />
-        <TextBlock 
-            Grid.Row="0" Grid.Column="1"
-            Text="Логин"
-            VerticalAlignment="Center"
-            TextAlignment="Center"
-            />
-        <TextBlock 
-            Grid.Row="0" Grid.Column="2"
-            Text="Пароль"
-            VerticalAlignment="Center"
-            TextAlignment="Center"
-            />
-        <TextBlock 
-            Grid.Row="0" Grid.Column="3"
-            Text="Локалка"
-            VerticalAlignment="Center"
-            TextAlignment="Center"
-            />
-        <TextBlock 
-            Grid.Row="0" Grid.Column="4"
-            Text="Код доступа"
-            VerticalAlignment="Center"
-            TextAlignment="Center"
-            />
-        <TextBlock 
-            Grid.Row="0" Grid.Column="5"
-            Text="Функции"
-            VerticalAlignment="Center"
-            TextAlignment="Left"
-            />
         <Button
-            Grid.Row="0" Grid.Column="5"
-            Name="CreateUser"
-            VerticalAlignment="Center"
-            HorizontalAlignment="Right"
-            Content="Создать"
-            Click="CreateUser_Click"
+            Grid.Row="0"
+            VerticalAlignment="Top"
+            Content="Сохранить изменения"
+            Click="Button_Click"
             />
-        <!--#endregion-->
-        
-        <!--#region 1-ая строка -->
-        <TextBlock
-            Grid.Row="1" Grid.Column="0"
-            HorizontalAlignment="Center"
-            VerticalAlignment="Center"
-            TextAlignment="Center"
-            Text="1"
-            />
-        <TextBlock
-            Grid.Row="1" Grid.Column="1"
-            HorizontalAlignment="Center"
-            VerticalAlignment="Center"
-            TextAlignment="Center"
-            Text=""
-            />
-        <TextBlock
-            Grid.Row="1" Grid.Column="2"
-            HorizontalAlignment="Center"
-            VerticalAlignment="Center"
-            TextAlignment="Center"
-            Text=""
-            />
-        <TextBlock
-            Grid.Row="1" Grid.Column="3"
-            HorizontalAlignment="Center"
-            VerticalAlignment="Center"
-            TextAlignment="Center"
-            Text=""
-            />
-        <TextBlock
-            Grid.Row="1" Grid.Column="4"
-            HorizontalAlignment="Center"
-            VerticalAlignment="Center"
-            TextAlignment="Center"
-            Text=""
-            />
-        <Button
-            Grid.Row="1" Grid.Column="5"
-            VerticalAlignment="Center"
-            HorizontalAlignment="Right"
-            Content="Удалить"
-            />
-        <Button
-            Grid.Row="1" Grid.Column="5"
-            VerticalAlignment="Center"
-            HorizontalAlignment="Left"
-            Content="Изменить"
-            />
-        <!--#endregion-->
-        
-        <!--#region 2-ая строка -->
-        <TextBlock
-            Grid.Row="2" Grid.Column="0"
-            HorizontalAlignment="Center"
-            VerticalAlignment="Center"
-            TextAlignment="Center"
-            Text="2"
-            />
-        <TextBlock
-            Grid.Row="2" Grid.Column="1"
-            HorizontalAlignment="Center"
-            VerticalAlignment="Center"
-            TextAlignment="Center"
-            Text=""
-            />
-        <TextBlock
-            Grid.Row="2" Grid.Column="2"
-            HorizontalAlignment="Center"
-            VerticalAlignment="Center"
-            TextAlignment="Center"
-            Text=""
-            />
-        <TextBlock
-            Grid.Row="2" Grid.Column="3"
-            HorizontalAlignment="Center"
-            VerticalAlignment="Center"
-            TextAlignment="Center"
-            Text=""
-            />
-        <TextBlock
-            Grid.Row="2" Grid.Column="4"
-            HorizontalAlignment="Center"
-            VerticalAlignment="Center"
-            TextAlignment="Center"
-            Text=""
-            />
-        <Button
-            Grid.Row="2" Grid.Column="5"
-            VerticalAlignment="Center"
-            HorizontalAlignment="Right"
-            Content="Удалить"
-            />
-        <Button
-            Grid.Row="2" Grid.Column="5"
-            VerticalAlignment="Center"
-            HorizontalAlignment="Left"
-            Content="Изменить"
-            />
-        <!--#endregion-->
-        
-        <!--#region 3-ая строка -->
-        <TextBlock
-            Grid.Row="3" Grid.Column="0"
-            HorizontalAlignment="Center"
-            VerticalAlignment="Center"
-            TextAlignment="Center"
-            Text="3"
-            />
-        <TextBlock
-            Grid.Row="3" Grid.Column="1"
-            HorizontalAlignment="Center"
-            VerticalAlignment="Center"
-            TextAlignment="Center"
-            Text=""
-            />
-        <TextBlock
-            Grid.Row="3" Grid.Column="2"
-            HorizontalAlignment="Center"
-            VerticalAlignment="Center"
-            TextAlignment="Center"
-            Text=""
-            />
-        <TextBlock
-            Grid.Row="3" Grid.Column="3"
-            HorizontalAlignment="Center"
-            VerticalAlignment="Center"
-            TextAlignment="Center"
-            Text=""
-            />
-        <TextBlock
-            Grid.Row="3" Grid.Column="4"
-            HorizontalAlignment="Center"
-            VerticalAlignment="Center"
-            TextAlignment="Center"
-            Text=""
-            Initialized="TextBlock_Initialized"
-            />
-        <Button
-            Grid.Row="3" Grid.Column="5"
-            VerticalAlignment="Center"
-            HorizontalAlignment="Right"
-            Content="Удалить"
-            />
-        <Button
-            Grid.Row="3" Grid.Column="5"
-            VerticalAlignment="Center"
-            HorizontalAlignment="Left"
-            Content="Изменить"
-            />
-        <!--#endregion-->
+        <DataGrid
+            Grid.Row="1"
+            VerticalAlignment="Top"
+            x:Name="dgUsers" 
+            AutoGenerateColumns="True"
+            CurrentCellChanged="dgUsers_CurrentCellChanged">
+            
+        </DataGrid>
     </Grid>
 </Window>

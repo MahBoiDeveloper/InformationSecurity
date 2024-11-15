@@ -41,8 +41,11 @@ namespace InformationSecurity
                 return;
             }
 
-            NFA nfa = new NFA(Login);
-            nfa.Show();
+            UserManager um = new UserManager();
+            um.Show();
+            
+            //NFA nfa = new NFA(Login);
+            //nfa.Show();
 
             Close();
         }

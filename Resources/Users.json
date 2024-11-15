@@ -1,33 +1,22 @@
-{
-  "salt": [
-    "Gs~i_pPg}\\F99mgt{eOK(h1{kDFvr([YA\\HB3%fl+Dhg[798Dp>2Ee8&;;g3JQOx",
-    "g10ouORfi~i=*9gf=#O6N*F4oZ4@]fu\\Jd=65*?fwaC*Q(G\\XN#:rkD2LzEFR6�i",
-    "a3$i[Kiuth;=ZT+,gqe\\#,I;~>80zZ~:.�mU_Lt2L@Gbl+4+yvX_+N{t:!60oJxW",
-    "tr<o:@@~M,fNrt.q$gMJPQ3ijhvh_f^/J?}isI%yO@t�ZIF^]�(FuS_[13yA0N,n",
-    "_^A_7c]GG5a7K,o0H68r@rLxaM_7xz$Hsb7Z2j2~b1bq;\\.SS}QQ[w:^@E01Wj5?",
-    "I^g2FOd?2U(1QKAAu1kO>H.%V.Q+&yPb/vT=�Q3sWNy66J6,.i9<#t9:)7j]:fH4"
-  ],
+[
+  {
+    "login": "admin",
+    "password": "password",
+    "allowed_local_account": "PC\\PC",
+    "codes": [ "1", "2", "777" ]
+  },
 
-  "userdata": [
-    {
-      "login": "admin",
-      "password": "password",
-      "allowed_local_account": "PC\\PC",
-      "codes": [ "1", "0", "01", "02", "ИБ" ]
-    },
+  {
+    "login": "root",
+    "password": "password",
+    "allowed_local_account": "",
+    "codes": [ "0", "1" ]
+  },
 
-    {
-      "login": "root",
-      "password": "password",
-      "allowed_local_account": "",
-      "codes": [ "0", "01", "02", "ИБ" ]
-    },
-
-    {
-      "login": "user",
-      "password": "1",
-      "allowed_local_account": "PC\\PC",
-      "codes": [ "1", "0", "01", "02", "ИБ" ]
-    }
-  ]
-}
+  {
+    "login": "user",
+    "password": "1",
+    "allowed_local_account": "PC\\PC",
+    "codes": [ "1", "0", "01", "02", "ИБ" ]
+  }
+]

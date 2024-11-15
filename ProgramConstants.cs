@@ -10,6 +10,7 @@
         public static readonly string EMPTY_LOGIN_ERROR_DESCTIPTION   = "Авторизация под пустым логином невозможна!";
         public static readonly string SPEC_SYMBOLS_ERROR_DESCTIPTION  = "Использование специальных символов запрещено!";
 
+        public static readonly string SALT_JSON = "Resources\\Salts.json";
         public static readonly string USERS_JSON = "Resources\\Users.json";
         public static readonly string DATABASE_JSON = "Resources\\Database.json";
     }
