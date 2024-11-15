@@ -3,20 +3,20 @@
     "login": "admin",
     "password": "password",
     "allowed_local_account": "PC\\PC",
-    "codes": [ "1", "2", "777" ]
+    "code": "1"
   },
 
   {
     "login": "root",
     "password": "password",
     "allowed_local_account": "",
-    "codes": [ "0", "1" ]
+    "code": "0"
   },
 
   {
     "login": "user",
     "password": "1",
     "allowed_local_account": "PC\\PC",
-    "codes": [ "1", "0", "01", "02", "ИБ" ]
+    "codes": "1"
   }
 ]

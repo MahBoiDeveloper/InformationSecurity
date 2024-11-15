@@ -10,10 +10,7 @@ namespace InformationSecurity
     {
         private static string Login    = string.Empty;
         private static string Password = string.Empty;
-        public MainWindow()
-        {
-            InitializeComponent();
-        }
+        public MainWindow() => InitializeComponent();
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {

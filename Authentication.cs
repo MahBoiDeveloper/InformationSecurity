@@ -15,7 +15,7 @@ namespace InformationSecurity
             public string login { get; set; } = string.Empty;
             public string password { get; set; } = string.Empty;
             public string allowed_local_account { get; set; } = string.Empty;
-            public List<string> codes { get; set; } = null;
+            public string code { get; set; } = string.Empty;
         }
 
         private static readonly Random       rng = new Random();
@@ -42,9 +42,8 @@ namespace InformationSecurity
         {
             foreach (var user in Users)
                 if (user.login == login)
-                    foreach (var elem in user.codes)
-                        if (elem == code)
-                            return true;
+                    if (user.code == code)
+                        return true;
 
             return false;
         }
