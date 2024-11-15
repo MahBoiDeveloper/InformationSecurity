@@ -348,9 +348,9 @@ namespace InformationSecurity
         /// <summary>
         /// Тоже самое, что и GetHash256.
         /// </summary>
-        public string GetHash(byte[] src)    => GetHash256(src);
-        public string GetHash512(byte[] src) => GetHash512(Encoding.Default.GetString(src));
-        public string GetHash256(byte[] src) => GetHash256(Encoding.Default.GetString(src));
+        public byte[] GetHash(byte[] src)    => GetHash256(src);
+        public byte[] GetHash512(byte[] src) => Convert.FromHexString(GetHash512(Encoding.Default.GetString(src)));
+        public byte[] GetHash256(byte[] src) => GetHash256(src);
         #endregion
 
         private void GoHash()
