@@ -5,8 +5,83 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:InformationSecurity"
         mc:Ignorable="d"
-        Title="Лабка ИБ — Менеджер Кузнечика" Height="450" Width="800">
+        Title="Лабка ИБ — Шифрование Кузнечиком" Height="450" Width="800">
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <StackPanel
+            Grid.Row="0"
+            Orientation="Horizontal"
+            HorizontalAlignment="Stretch"
+            >
+            <Button
+                x:Name="btnSave"
+                VerticalAlignment="Top"
+                HorizontalAlignment="Stretch"
+                Content="Сохранить изменения таблицы"
+                Click="btnSave_Click"
+                />
+            <Button
+                x:Name="btnReturn"
+                VerticalAlignment="Top"
+                HorizontalAlignment="Stretch"
+                Content="Выйти"
+                Click="btnReturn_Click"
+                />
+        </StackPanel>
+        <DataGrid
+            Grid.Row="1"
+            VerticalAlignment="Top"
+            AutoGenerateColumns="False"
+            x:Name="dgData" 
+            >
+            <DataGrid.Columns>
+                <DataGridTextColumn CanUserSort="True" IsReadOnly="True" Binding="{Binding user,       UpdateSourceTrigger=PropertyChanged}" Header="Логин"/>
+                <DataGridTextColumn CanUserSort="True"                   Binding="{Binding first_key,  UpdateSourceTrigger=PropertyChanged}" Header="1ый ключ"/>
+                <DataGridTextColumn CanUserSort="True"                   Binding="{Binding second_key, UpdateSourceTrigger=PropertyChanged}" Header="2ой ключ"/>
+                <DataGridTextColumn CanUserSort="True"                   Binding="{Binding message,    UpdateSourceTrigger=PropertyChanged}" Header="Сообщение"/>
+                <DataGridTextColumn CanUserSort="True"                   Binding="{Binding cipher,     UpdateSourceTrigger=PropertyChanged}" Header="Шифр"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <StackPanel
+            Grid.Row="2"
+            >
+            <StackPanel
+                Orientation="Horizontal"
+                HorizontalAlignment="Stretch"
+                >
+                <Button 
+                    Content="Шифровать"
+                    />
+                <Button 
+                    Content="Дешифровать"
+                    />
+                <Button 
+                    Content="Сохранить данные в таблицу"
+                    />
+            </StackPanel>
+            <TextBox 
+                x:Name="txtKey1"
+                Text="1-ый ключ"/>
+            <TextBox 
+                x:Name="txtKey2"
+                Text="2-ой ключ"/>
+            <TextBox 
+                x:Name="txtInput"
+                VerticalScrollBarVisibility="Auto"
+                VerticalAlignment="Stretch"
+                TextWrapping="WrapWithOverflow"
+                Text="Текст"/>
+            <TextBox 
+                x:Name="txtOutput"
+                VerticalScrollBarVisibility="Auto"
+                VerticalAlignment="Stretch"
+                TextWrapping="WrapWithOverflow"
+                Text="Шифр"
+                />
+        </StackPanel>
     </Grid>
 </Window>

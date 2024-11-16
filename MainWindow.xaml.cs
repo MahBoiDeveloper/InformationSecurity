@@ -39,7 +39,7 @@ namespace InformationSecurity
             }
 
             NFA nfa = new NFA(Login);
-            nfa.Show();
+            nfa.ShowDialog();
 
             Close();
         }

@@ -24,15 +24,15 @@
             Grid.Row="0" Grid.Column="2"
             VerticalAlignment="Top"
             HorizontalAlignment="Stretch"
-            Name="RSA"
             Content="RSA"
+            Click="btnRSA_Click"
             />
         <Button
             Grid.Row="0" Grid.Column="1"
             VerticalAlignment="Top"
             HorizontalAlignment="Stretch"
-            Name="Кузнечик"
             Content="Кузнечик"
+            Click="btnKuz_Click"
             />
         <Button
             Grid.Row="0" Grid.Column="0"

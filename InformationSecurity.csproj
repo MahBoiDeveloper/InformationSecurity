@@ -9,7 +9,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Update="Resources\Database.json">
+    <None Update="Resources\Kuznechik.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Resources\RSA.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Update="Resources\Salts.json">

@@ -9,10 +9,9 @@ namespace InformationSecurity
     public partial class Manager : Window
     {
         public string Login;
-        public Manager(string lgn)
+        public Manager()
         {
-            Login = lgn;
-
+            Login = Authentication.CurrentUser;
             InitializeComponent();
         }
 
@@ -46,6 +45,18 @@ namespace InformationSecurity
                 s.Visibility = Visibility.Hidden;
                 return;
             }
+        }
+
+        private void btnKuz_Click(object sender, RoutedEventArgs e)
+        {
+            KuznechikManager km = new KuznechikManager();
+            km.ShowDialog();
+        }
+
+        private void btnRSA_Click(object sender, RoutedEventArgs e)
+        {
+            RSAManager rm = new RSAManager();
+            rm.ShowDialog();
         }
     }
 }

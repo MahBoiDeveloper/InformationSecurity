@@ -13,6 +13,7 @@ namespace InformationSecurity
         public NFA(string login)
         {
             Login = login;
+            Authentication.CurrentUser = login;
             InitializeComponent();
         }
 
@@ -30,7 +31,7 @@ namespace InformationSecurity
                 return;
             }
 
-            Manager mng = new Manager(Login);
+            Manager mng = new Manager();
             mng.Show();
 
             Close();

@@ -1,9 +1,9 @@
 [
   {
     "user": "admin",
-    "first.key": "",
-    "second.key": "",
-    "message": "",
-    "cipher": ""
+    "first_key": "1",
+    "second_key": "1",
+    "message": "1",
+    "cipher": "1"
   }
 ]

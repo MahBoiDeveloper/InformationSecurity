@@ -20,12 +20,12 @@ namespace InformationSecurity
 
         private static readonly Random       rng = new Random();
         private static readonly JsonDocument doc = JsonDocument.Parse(File.ReadAllText(ProgramConstants.USERS_JSON));
-        public  static readonly List<string> Salts = JsonSerializer.Deserialize<List<string>>(File.ReadAllText(ProgramConstants.SALT_JSON));
+        public  static readonly List<string> Salts = JsonSerializer.Deserialize<List<string>>(File.ReadAllText(ProgramConstants.SALTS_JSON));
         public  static readonly List<User>   Users = JsonSerializer.Deserialize<List<User>>(File.ReadAllText(ProgramConstants.USERS_JSON));
+        public  static string CurrentUser { get; set; } = string.Empty;
 
         static Authentication() 
         {
-            return;
         }
 
         public static bool CheckLocalAccountForLogin(string login)

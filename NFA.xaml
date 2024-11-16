@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         ResizeMode="CanMinimize"
         Title="Лабка ИБ — Код доступа"
-        Height="450" Width="800">
+        Height="250" Width="300">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition/>
@@ -26,7 +26,8 @@
             HorizontalAlignment="Stretch"
             TextAlignment="Center"
             Name="КодДоступа"
-            Text="Код доступа" 
+            Text="Код доступа"
+            InputScope="Number"
             GotFocus="TextBox_GotFocus" 
             LostFocus="TextBox_LostFocus"
             TextChanged="TextBox_TextChanged"
