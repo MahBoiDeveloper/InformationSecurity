@@ -15,18 +15,12 @@ using System.Windows.Shapes;
 namespace InformationSecurity
 {
     /// <summary>
-    /// Логика взаимодействия для Crypto.xaml
+    /// Логика взаимодействия для RSAManager.xaml
     /// </summary>
-    public partial class Crypto : Window
+    public partial class RSAManager : Window
     {
-        private ICryptoAlgorithm? Algo;
-        public Crypto(ICryptoAlgorithm algo)
+        public RSAManager()
         {
-            if (algo is null) 
-                throw new ArgumentNullException(nameof(algo));
-
-            Algo = algo;
-
             InitializeComponent();
         }
     }

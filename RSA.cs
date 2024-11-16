@@ -288,26 +288,6 @@ namespace InformationSecurity
             //Console.WriteLine("частные от деления на НОД: (" + t + ", " + s + ")");
 
             return Min(old_s, old_t);
-
-            //BigInteger q, r, x, y, x1 = 0, x2 = 1,
-            //                       y1 = 1, y2 = 0;
-
-            //while (b > 0)
-            //{
-            //    q = a / b;
-            //    r = a - q * b;
-            //    x = x2 - q * x1;
-            //    y = y2 - q * y1;
-            //    a = b;
-            //    b = r;
-            //    x2 = x1;
-            //    x1 = x;
-            //    y2 = y1;
-            //    y1 = y;
-            //}
-
-            //return Min(x2, y2);
-
         }
 
         private BigInteger Min(BigInteger a, BigInteger b) => a < b ? a : b;
