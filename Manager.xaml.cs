@@ -32,8 +32,7 @@ namespace InformationSecurity
             if (s == null) return;
 
             UserManager um = new UserManager();
-            um.Show();
-            Close();
+            um.ShowDialog();
         }
 
         private void Button_InitializedUserManagement(object sender, EventArgs e)

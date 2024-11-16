@@ -2,12 +2,7 @@
 using System.Windows.Controls;
 using System.IO;
 using System.Text.Json;
-using System.Collections.ObjectModel;
-using System.Windows.Data;
-using System.Globalization;
-using System.ComponentModel;
-using System.Text.Json.Serialization;
-using System.Runtime;
+using System.Xml;
 
 namespace InformationSecurity
 {
@@ -31,12 +26,14 @@ namespace InformationSecurity
             rg.ShowDialog();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void btnSave_Click(object sender, RoutedEventArgs e)
         {
-            foreach (var user in Authentication.Users)
-            {
-                MessageBox.Show(user.login + ", " + user.password + ", " + user.allowed_local_account + ", " + user.code);
-            }
+            File.WriteAllText(ProgramConstants.USERS_JSON, JsonSerializer.Serialize(Authentication.Users, new JsonSerializerOptions { WriteIndented = true} ));
+        }
+
+        private void btnReturn_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
         }
     }
 }

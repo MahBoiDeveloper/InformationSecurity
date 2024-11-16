@@ -12,12 +12,26 @@
             <RowDefinition Height="auto"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <Button
+        <StackPanel
             Grid.Row="0"
-            VerticalAlignment="Top"
-            Content="Сохранить изменения"
-            Click="Button_Click"
-            />
+            Orientation="Horizontal"
+            HorizontalAlignment="Stretch"
+            >
+            <Button
+                x:Name="btnSave"
+                VerticalAlignment="Top"
+                HorizontalAlignment="Stretch"
+                Content="Сохранить изменения"
+                Click="btnSave_Click"
+                />
+            <Button
+                x:Name="btnReturn"
+                VerticalAlignment="Top"
+                HorizontalAlignment="Stretch"
+                Content="Выйти"
+                Click="btnReturn_Click"
+                />
+        </StackPanel>
         <DataGrid
             Grid.Row="1"
             VerticalAlignment="Top"
