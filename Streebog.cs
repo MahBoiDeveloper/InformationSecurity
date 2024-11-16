@@ -306,10 +306,10 @@ namespace InformationSecurity
 
         #region Interface for hash
         /// <summary>
-        /// Тоже самое, что и GetHash256.
+        /// Тоже самое, что и ComputeHash256.
         /// </summary>
-        public string GetHash(string src) => GetHash256(src);
-        public string GetHash512(string src)
+        public string ComputeHash(string src) => ComputeHash256(src);
+        public string ComputeHash512(string src)
         {
             inputByteArray = Encoding.Default.GetBytes(src);
             inputString = src;
@@ -326,7 +326,7 @@ namespace InformationSecurity
 
             return strHash;
         }
-        public string GetHash256(string src)
+        public string ComputeHash256(string src)
         {
             IsHash512 = false;
 
@@ -346,11 +346,11 @@ namespace InformationSecurity
         }
 
         /// <summary>
-        /// Тоже самое, что и GetHash256.
+        /// Тоже самое, что и ComputeHash256.
         /// </summary>
-        public byte[] GetHash(byte[] src)    => GetHash256(src);
-        public byte[] GetHash512(byte[] src) => Convert.FromHexString(GetHash512(Encoding.Default.GetString(src)));
-        public byte[] GetHash256(byte[] src) => GetHash256(src);
+        public byte[] ComputeHash(byte[] src)    => ComputeHash256(src);
+        public byte[] ComputeHash512(byte[] src) => Convert.FromHexString(ComputeHash512(Encoding.Default.GetString(src)));
+        public byte[] ComputeHash256(byte[] src) => Convert.FromHexString(ComputeHash256(Encoding.Default.GetString(src)));
         #endregion
 
         private void GoHash()

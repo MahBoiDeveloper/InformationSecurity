@@ -86,7 +86,7 @@ namespace InformationSecurity
 
             hash = Convert.ToHexString(
                                        md5.ComputeHash(
-                                       stb.GetHash(
+                                       stb.ComputeHash(
                                        sha512.ComputeHash(Convert.FromHexString(hash_login + hash_password)))));
 
             return hash;

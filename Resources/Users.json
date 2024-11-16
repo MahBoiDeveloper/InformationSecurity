@@ -17,6 +17,6 @@
     "login": "user",
     "password": "1",
     "allowed_local_account": "PC\\PC",
-    "codes": "1"
+    "code": "1"
   }
 ]

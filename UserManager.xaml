@@ -21,10 +21,15 @@
         <DataGrid
             Grid.Row="1"
             VerticalAlignment="Top"
+            AutoGenerateColumns="False"
             x:Name="dgUsers" 
-            AutoGenerateColumns="True"
-            CurrentCellChanged="dgUsers_CurrentCellChanged">
-            
+            >
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding login,                 UpdateSourceTrigger=PropertyChanged}" Header="Логин"/>
+                <DataGridTextColumn Binding="{Binding password,              UpdateSourceTrigger=PropertyChanged}" Header="Пароль"/>
+                <DataGridTextColumn Binding="{Binding allowed_local_account, UpdateSourceTrigger=PropertyChanged}" Header="Локалка"/>
+                <DataGridTextColumn Binding="{Binding code,                  UpdateSourceTrigger=PropertyChanged}" Header="Код доступа"/>
+            </DataGrid.Columns>
         </DataGrid>
     </Grid>
 </Window>
