@@ -28,6 +28,7 @@
                 x:Name="btnReturn"
                 VerticalAlignment="Top"
                 HorizontalAlignment="Stretch"
+                Margin="5,0,0,0"
                 Content="Выйти"
                 Click="btnReturn_Click"
                 />
@@ -65,11 +66,13 @@
                     />
                 <Button 
                     Content="Дешифровать" 
+                    Margin="5,0,0,0"
                     x:Name="btnDecipher"
                     Click="btnDecipher_Click" 
                     />
                 <Button 
                     Content="Сохранить данные в таблицу"
+                    Margin="5,0,0,0"
                     x:Name="btnSaveToTable"
                     Click="btnSaveToTable_Click" 
                     />

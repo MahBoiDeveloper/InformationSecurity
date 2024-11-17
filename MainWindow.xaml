@@ -8,7 +8,7 @@
         ResizeMode="CanMinimize"
         Title="Лабка ИБ — Вход"
         Height="450" Width="800">
-    <Grid>
+    <Grid Margin="10">
         <Grid.RowDefinitions>
             <RowDefinition/>
             <RowDefinition/>

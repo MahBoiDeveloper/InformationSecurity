@@ -7,8 +7,8 @@
         mc:Ignorable="d"
         ResizeMode="CanMinimize"
         Title="Лабка ИБ — Основное окно"
-        Height="100" Width="470">
-    <Grid>
+        Height="130" Width="470">
+    <Grid Margin="10">
         <Grid.RowDefinitions>
             <RowDefinition/>
             <RowDefinition/>

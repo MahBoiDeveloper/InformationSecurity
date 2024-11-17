@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:InformationSecurity"
         mc:Ignorable="d"
         Title="Лабка ИБ — Шифрование RSA" Height="450" Width="800">
-    <Grid>
+    <Grid Margin="10">
         
     </Grid>
 </Window>

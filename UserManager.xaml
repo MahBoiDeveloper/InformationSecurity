@@ -7,7 +7,7 @@
         xmlns:local="clr-namespace:InformationSecurity"
         mc:Ignorable="d"
         Title="Лабка ИБ — Управление юзверями" Height="450" Width="800" >
-    <Grid>
+    <Grid Margin="10">
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
             <RowDefinition/>
@@ -28,6 +28,7 @@
                 x:Name="btnReturn"
                 VerticalAlignment="Top"
                 HorizontalAlignment="Stretch"
+                Margin="5,0,0,0"
                 Content="Выйти"
                 Click="btnReturn_Click"
                 />
