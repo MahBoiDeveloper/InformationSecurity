@@ -1,10 +1,12 @@
-﻿using System.IO;
+﻿using System.Collections.Specialized;
+using System.IO;
 using System.Runtime.ExceptionServices;
 using System.Text;
 using System.Text.Json;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using static InformationSecurity.Authentication;
 
 namespace InformationSecurity
 {
@@ -23,6 +25,10 @@ namespace InformationSecurity
         }
         public List<KuznechikData>? Database { get; set; }
         public List<KuznechikData>? CurrentView { get; set; }
+
+        private byte[] key1;
+        private byte[] key2;
+
         public KuznechikManager()
         {
             Database = JsonSerializer.Deserialize<List<KuznechikData>>(File.ReadAllText(ProgramConstants.KUZNECHIK_JSON));
@@ -43,7 +49,12 @@ namespace InformationSecurity
 
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
-            File.WriteAllText(ProgramConstants.KUZNECHIK_JSON, JsonSerializer.Serialize(Authentication.Users, new JsonSerializerOptions { WriteIndented = true }));
+            if (Authentication.CurrentUser != "admin" && Authentication.CurrentUser != "root")
+                Database = Database.AsParallel().Where(x => x.user != Authentication.CurrentUser).ToList().Concat(CurrentView).ToList();
+            else
+                Database = CurrentView;
+
+            File.WriteAllText(ProgramConstants.KUZNECHIK_JSON, JsonSerializer.Serialize(Database, new JsonSerializerOptions { WriteIndented = true }));
         }
 
         private void btnReturn_Click(object sender, RoutedEventArgs e)
@@ -110,7 +121,18 @@ namespace InformationSecurity
 
         private void btnSaveToTable_Click(object sender, RoutedEventArgs e)
         {
+            if (IsTextBoxEmpty(ref txtInput) || IsTextBoxEmpty(ref txtOutput))
+                MessageBox.Show(ProgramConstants.NO_DATA_TO_SAVE_DESCRIPTION, ProgramConstants.KUZNECHIK_ERROR_HEADER);
 
+            CurrentView.Add(new KuznechikData {
+                user = Authentication.CurrentUser,
+                first_key = Convert.ToHexString(key1),
+                second_key = Convert.ToHexString(key2),
+                message = txtInput.Text,
+                cipher = txtOutput.Text
+            });
+
+            dgData.Items.Refresh();
         }
 
         private bool IsTextBoxEmpty(ref TextBox textBox) => textBox.Text == string.Empty || textBox.Text == textBox.ToolTip.ToString() ? true : false;
@@ -134,8 +156,6 @@ namespace InformationSecurity
 
         private Kuznechik SetUpKuznechik()
         {
-            byte[] key1;
-            byte[] key2;
 
             if (IsTextBoxEmpty(ref txtKey1))
                 key1 = Kuznechik.FirstKey;

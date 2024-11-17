@@ -37,14 +37,18 @@
             VerticalScrollBarVisibility="Auto"
             VerticalAlignment="Top"
             AutoGenerateColumns="False"
+            IsTextSearchEnabled="True"
+            CanUserDeleteRows="False"
+            CanUserAddRows="False"
+            CanUserSortColumns="True"
             x:Name="dgData" 
             >
             <DataGrid.Columns>
-                <DataGridTextColumn x:Name="clmLogin" CanUserSort="True" IsReadOnly="True" Binding="{Binding user,       UpdateSourceTrigger=PropertyChanged}" Header="Логин"/>
-                <DataGridTextColumn                   CanUserSort="True"                   Binding="{Binding first_key,  UpdateSourceTrigger=PropertyChanged}" Header="1ый ключ"/>
-                <DataGridTextColumn                   CanUserSort="True"                   Binding="{Binding second_key, UpdateSourceTrigger=PropertyChanged}" Header="2ой ключ"/>
-                <DataGridTextColumn                   CanUserSort="True"                   Binding="{Binding message,    UpdateSourceTrigger=PropertyChanged}" Header="Сообщение"/>
-                <DataGridTextColumn                   CanUserSort="True"                   Binding="{Binding cipher,     UpdateSourceTrigger=PropertyChanged}" Header="Шифр"/>
+                <DataGridTextColumn x:Name="clmLogin" Binding="{Binding user,       UpdateSourceTrigger=PropertyChanged}" Header="Логин"/>
+                <DataGridTextColumn IsReadOnly="True" Binding="{Binding first_key,  UpdateSourceTrigger=PropertyChanged}" Header="1ый ключ"/>
+                <DataGridTextColumn IsReadOnly="True" Binding="{Binding second_key, UpdateSourceTrigger=PropertyChanged}" Header="2ой ключ"/>
+                <DataGridTextColumn IsReadOnly="True" Binding="{Binding message,    UpdateSourceTrigger=PropertyChanged}" Header="Сообщение"/>
+                <DataGridTextColumn IsReadOnly="True" Binding="{Binding cipher,     UpdateSourceTrigger=PropertyChanged}" Header="Шифр"/>
             </DataGrid.Columns>
         </DataGrid>
         <StackPanel

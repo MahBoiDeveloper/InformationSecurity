@@ -5,18 +5,22 @@
     "allowed_local_account": "PC\\PC",
     "code": "1"
   },
-
   {
     "login": "root",
     "password": "password",
     "allowed_local_account": "",
     "code": "0"
   },
-
   {
     "login": "user",
     "password": "1",
     "allowed_local_account": "PC\\PC",
     "code": "1"
+  },
+  {
+    "login": "pc",
+    "password": "1",
+    "allowed_local_account": "PC\\PC",
+    "code": "2"
   }
 ]
