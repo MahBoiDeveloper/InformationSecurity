@@ -2,6 +2,13 @@
 {
     class ProgramConstants
     {
+        public static readonly string KUZNECHIK_ERROR_HEADER          = "Ошибка работы Кузнечика";
+        public static readonly string KEY1_INCOMPLETE_DESCRIPTION     = "1-ый ключ не равен по длине 16 байт. Длина ключа: {0} байт.";
+        public static readonly string KEY2_INCOMPLETE_DESCRIPTION     = "2-ой ключ не равен по длине 16 байт. Длина ключа: {0} байт.";
+        public static readonly string NO_DATA_TO_ENCRYPT_DESCRIPTION  = "Отсутствуют данные в поле \"Текст\". Шифрация пустых полей невозможна.";
+        public static readonly string NO_DATA_TO_DECRYPT_DESCRIPTION  = "Отсутствуют данные в поле \"Шифр\". Дешифрация пустых полей невозможна.";
+        public static readonly string OUTPUT_DATA_IS_NOT_A_HEX_DESC   = "Данные поле \"Шифр\" не является шифром.\n\nТекст ошибки: ";
+
         public static readonly string _2FA_ERROR_HEADER               = "Ошибка аутентификации";
         public static readonly string LOCAL_USER_ERROR_DESCTIPTION    = "Системе не удалось подтвердить подлинность " +
                                                                         "вашей локальной учётной записи Windows.";

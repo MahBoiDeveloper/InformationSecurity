@@ -6,9 +6,7 @@
         xmlns:local="clr-namespace:InformationSecurity"
         mc:Ignorable="d"
         Title="Лабка ИБ — Шифрование Кузнечиком" Height="450" Width="800">
-    <Grid
-        ScrollViewer.CanContentScroll="True"
-        >
+    <Grid Margin="10">
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
             <RowDefinition/>
@@ -51,20 +49,25 @@
         </DataGrid>
         <StackPanel
             Grid.Row="2"
-            CanVerticallyScroll="True"
+            VerticalAlignment="Bottom"
             >
             <StackPanel
                 Orientation="Horizontal"
-                HorizontalAlignment="Stretch"
-                >
+                HorizontalAlignment="Stretch" >
                 <Button 
                     Content="Шифровать"
+                    x:Name="btnCipher"
+                    Click="btnCipher_Click" 
                     />
                 <Button 
-                    Content="Дешифровать"
+                    Content="Дешифровать" 
+                    x:Name="btnDecipher"
+                    Click="btnDecipher_Click" 
                     />
                 <Button 
                     Content="Сохранить данные в таблицу"
+                    x:Name="btnSaveToTable"
+                    Click="btnSaveToTable_Click" 
                     />
             </StackPanel>
             <TextBox 
@@ -81,30 +84,28 @@
                 GotFocus="TextBox_GotFocus"
                 LostFocus="TextBox_LostFocus"
                 />
-            <TextBox 
-                x:Name="txtInput"
-                ScrollViewer.CanContentScroll="True"
-                ScrollViewer.VerticalScrollBarVisibility="Visible"
-                ScrollViewer.IsDeferredScrollingEnabled="False"
-                VerticalAlignment="Stretch"
-                TextWrapping="Wrap"
-                Text="Текст"
-                ToolTip="Текст"
-                GotFocus="TextBox_GotFocus"
-                LostFocus="TextBox_LostFocus"
-                />
-            <TextBox 
-                x:Name="txtOutput"
-                ScrollViewer.CanContentScroll="True"
-                ScrollViewer.VerticalScrollBarVisibility="Visible"
-                ScrollViewer.IsDeferredScrollingEnabled="False"
-                VerticalAlignment="Stretch"
-                TextWrapping="Wrap"
-                Text="Шифр"
-                ToolTip="Шифр"
-                GotFocus="TextBox_GotFocus"
-                LostFocus="TextBox_LostFocus"
-                />
+            <ScrollViewer CanContentScroll="True" Height="60">
+                <TextBox 
+                    x:Name="txtInput"
+                    VerticalAlignment="Stretch"
+                    TextWrapping="Wrap"
+                    Text="Текст"
+                    ToolTip="Текст"
+                    GotFocus="TextBox_GotFocus"
+                    LostFocus="TextBox_LostFocus"
+                    />
+            </ScrollViewer>
+            <ScrollViewer CanContentScroll="True" Height="60">
+                <TextBox 
+                    x:Name="txtOutput"
+                    VerticalAlignment="Stretch"
+                    TextWrapping="Wrap"
+                    Text="Шифр"
+                    ToolTip="Шифр"
+                    GotFocus="TextBox_GotFocus"
+                    LostFocus="TextBox_LostFocus"
+                    />
+            </ScrollViewer>
         </StackPanel>
     </Grid>
 </Window>

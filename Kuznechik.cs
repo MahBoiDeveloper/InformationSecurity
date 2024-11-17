@@ -370,7 +370,7 @@ namespace InformationSecurity
         }
 
         public string Encrypt(string msg) => Convert.ToHexString(Encrypt(Encoding.Default.GetBytes(msg)));
-        public string Decrypt(string cph) => Convert.ToHexString(Decrypt(Convert.FromHexString(cph)));
+        public string Decrypt(string cph) => Encoding.Default.GetString(Decrypt(Convert.FromHexString(cph)));
         #endregion
 
         [Obsolete("Метод оставлен из-за сохранения говнокодовой базы. " +
