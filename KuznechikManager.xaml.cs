@@ -44,6 +44,9 @@ namespace InformationSecurity
             InitializeComponent();
 
             dgData.ItemsSource = CurrentView;
+
+            if (Authentication.CurrentUser != "admin" && Authentication.CurrentUser != "root")
+                clmLogin.Visibility = Visibility.Hidden;
         }
 
         private void btnSave_Click(object sender, RoutedEventArgs e)
@@ -54,6 +57,28 @@ namespace InformationSecurity
         private void btnReturn_Click(object sender, RoutedEventArgs e)
         {
             Close();
+        }
+
+        private void TextBox_GotFocus(object sender, RoutedEventArgs e)
+        {
+            var s = sender as TextBox;
+            if (s is null) return;
+
+            s.Text =
+                s.Text == s.ToolTip.ToString() ?
+                    string.Empty :
+                    s.Text;
+        }
+
+        private void TextBox_LostFocus(object sender, RoutedEventArgs e)
+        {
+            var s = sender as TextBox;
+            if (s is null) return;
+
+            s.Text =
+                s.Text.Trim() == string.Empty ?
+                    s.ToolTip.ToString() :
+                    s.Text;
         }
     }
 }

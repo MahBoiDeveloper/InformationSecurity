@@ -6,7 +6,9 @@
         xmlns:local="clr-namespace:InformationSecurity"
         mc:Ignorable="d"
         Title="Лабка ИБ — Шифрование Кузнечиком" Height="450" Width="800">
-    <Grid>
+    <Grid
+        ScrollViewer.CanContentScroll="True"
+        >
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
             <RowDefinition/>
@@ -34,20 +36,22 @@
         </StackPanel>
         <DataGrid
             Grid.Row="1"
+            VerticalScrollBarVisibility="Auto"
             VerticalAlignment="Top"
             AutoGenerateColumns="False"
             x:Name="dgData" 
             >
             <DataGrid.Columns>
-                <DataGridTextColumn CanUserSort="True" IsReadOnly="True" Binding="{Binding user,       UpdateSourceTrigger=PropertyChanged}" Header="Логин"/>
-                <DataGridTextColumn CanUserSort="True"                   Binding="{Binding first_key,  UpdateSourceTrigger=PropertyChanged}" Header="1ый ключ"/>
-                <DataGridTextColumn CanUserSort="True"                   Binding="{Binding second_key, UpdateSourceTrigger=PropertyChanged}" Header="2ой ключ"/>
-                <DataGridTextColumn CanUserSort="True"                   Binding="{Binding message,    UpdateSourceTrigger=PropertyChanged}" Header="Сообщение"/>
-                <DataGridTextColumn CanUserSort="True"                   Binding="{Binding cipher,     UpdateSourceTrigger=PropertyChanged}" Header="Шифр"/>
+                <DataGridTextColumn x:Name="clmLogin" CanUserSort="True" IsReadOnly="True" Binding="{Binding user,       UpdateSourceTrigger=PropertyChanged}" Header="Логин"/>
+                <DataGridTextColumn                   CanUserSort="True"                   Binding="{Binding first_key,  UpdateSourceTrigger=PropertyChanged}" Header="1ый ключ"/>
+                <DataGridTextColumn                   CanUserSort="True"                   Binding="{Binding second_key, UpdateSourceTrigger=PropertyChanged}" Header="2ой ключ"/>
+                <DataGridTextColumn                   CanUserSort="True"                   Binding="{Binding message,    UpdateSourceTrigger=PropertyChanged}" Header="Сообщение"/>
+                <DataGridTextColumn                   CanUserSort="True"                   Binding="{Binding cipher,     UpdateSourceTrigger=PropertyChanged}" Header="Шифр"/>
             </DataGrid.Columns>
         </DataGrid>
         <StackPanel
             Grid.Row="2"
+            CanVerticallyScroll="True"
             >
             <StackPanel
                 Orientation="Horizontal"
@@ -65,22 +69,41 @@
             </StackPanel>
             <TextBox 
                 x:Name="txtKey1"
-                Text="1-ый ключ"/>
+                Text="1-ый ключ"
+                ToolTip="1-ый ключ"
+                GotFocus="TextBox_GotFocus"
+                LostFocus="TextBox_LostFocus"
+                />
             <TextBox 
                 x:Name="txtKey2"
-                Text="2-ой ключ"/>
+                Text="2-ой ключ"
+                ToolTip="2-ой ключ"
+                GotFocus="TextBox_GotFocus"
+                LostFocus="TextBox_LostFocus"
+                />
             <TextBox 
                 x:Name="txtInput"
-                VerticalScrollBarVisibility="Auto"
+                ScrollViewer.CanContentScroll="True"
+                ScrollViewer.VerticalScrollBarVisibility="Visible"
+                ScrollViewer.IsDeferredScrollingEnabled="False"
                 VerticalAlignment="Stretch"
-                TextWrapping="WrapWithOverflow"
-                Text="Текст"/>
+                TextWrapping="Wrap"
+                Text="Текст"
+                ToolTip="Текст"
+                GotFocus="TextBox_GotFocus"
+                LostFocus="TextBox_LostFocus"
+                />
             <TextBox 
                 x:Name="txtOutput"
-                VerticalScrollBarVisibility="Auto"
+                ScrollViewer.CanContentScroll="True"
+                ScrollViewer.VerticalScrollBarVisibility="Visible"
+                ScrollViewer.IsDeferredScrollingEnabled="False"
                 VerticalAlignment="Stretch"
-                TextWrapping="WrapWithOverflow"
+                TextWrapping="Wrap"
                 Text="Шифр"
+                ToolTip="Шифр"
+                GotFocus="TextBox_GotFocus"
+                LostFocus="TextBox_LostFocus"
                 />
         </StackPanel>
     </Grid>
