@@ -5,8 +5,127 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:InformationSecurity"
         mc:Ignorable="d"
-        Title="Лабка ИБ — Шифрование RSA" Height="450" Width="800">
+        Title="Лабка ИБ — Шифрование RSA 16k" Height="500" Width="800">
     <Grid Margin="10">
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <StackPanel
+            Grid.Row="0"
+            Orientation="Horizontal"
+            HorizontalAlignment="Stretch"
+            >
+            <Button
+                x:Name="btnSave"
+                VerticalAlignment="Top"
+                HorizontalAlignment="Stretch"
+                Content="Сохранить изменения таблицы"
+                Click="btnSave_Click"
+                />
+            <Button
+                x:Name="btnReturn"
+                VerticalAlignment="Top"
+                HorizontalAlignment="Stretch"
+                Margin="5,0,0,0"
+                Content="Выйти"
+                Click="btnReturn_Click"
+                />
+        </StackPanel>
+        <DataGrid
+            Grid.Row="1"
+            VerticalScrollBarVisibility="Auto"
+            VerticalAlignment="Top"
+            AutoGenerateColumns="False"
+            IsTextSearchEnabled="True"
+            CanUserDeleteRows="False"
+            CanUserAddRows="False"
+            CanUserSortColumns="True"
+            x:Name="dgData" 
+            >
+            <DataGrid.Columns>
+                <DataGridTextColumn x:Name="clmLogin" Binding="{Binding user,            UpdateSourceTrigger=PropertyChanged}" Header="Логин"/>
+                <DataGridTextColumn IsReadOnly="True" Binding="{Binding message,         UpdateSourceTrigger=PropertyChanged}" Header="Сообщение"/>
+                <DataGridTextColumn IsReadOnly="True" Binding="{Binding cipher,          UpdateSourceTrigger=PropertyChanged}" Header="Шифр"/>
+                <DataGridTextColumn IsReadOnly="True" Binding="{Binding open_exponent,   UpdateSourceTrigger=PropertyChanged}" Header="Открытая экспонента"/>
+                <DataGridTextColumn IsReadOnly="True" Binding="{Binding closed_exponent, UpdateSourceTrigger=PropertyChanged}" Header="Закрытая экспонента"/>
+                <DataGridTextColumn IsReadOnly="True" Binding="{Binding multiplication,  UpdateSourceTrigger=PropertyChanged}" Header="Произведение простых"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <StackPanel
+            Grid.Row="2"
+            VerticalAlignment="Bottom" >
+            <StackPanel
+                Orientation="Horizontal"
+                HorizontalAlignment="Stretch" >
+                <Button 
+                    Content="Шифровать"
+                    x:Name="btnCipher"
+                    Click="btnCipher_Click" 
+                    />
+                <Button 
+                    Content="Дешифровать" 
+                    Margin="5,0,0,0"
+                    x:Name="btnDecipher"
+                    Click="btnDecipher_Click" 
+                    />
+                <Button 
+                    Content="Сохранить данные в таблицу"
+                    Margin="5,0,0,0"
+                    x:Name="btnSaveToTable"
+                    Click="btnSaveToTable_Click"
+                    />
+                <Button 
+                    Content="Сгенерировать случайные числа"
+                    Margin="5,0,0,0"
+                    x:Name="btnGetRandomKeys"
+                    Click="btnGetRandomKeys_Click"
+                    />
+            </StackPanel>
+            <TextBox 
+                x:Name="txtOpenExponent"
+                Text="Открытая экспонента"
+                ToolTip="Открытая экспонента"
+                GotFocus="TextBox_GotFocus"
+                LostFocus="TextBox_LostFocus"
+                />
+            <TextBox 
+                x:Name="txtClosedExponent"
+                Text="Закрытая экспонента"
+                ToolTip="Закрытая экспонента"
+                GotFocus="TextBox_GotFocus"
+                LostFocus="TextBox_LostFocus"
+                />
+            <TextBox 
+                x:Name="txtMultiplication"
+                Text="Произведение простых чисел"
+                ToolTip="Произведение простых чисел"
+                GotFocus="TextBox_GotFocus"
+                LostFocus="TextBox_LostFocus"
+                />
+            <ScrollViewer CanContentScroll="True" Height="60">
+                <TextBox 
+                    x:Name="txtInput"
+                    VerticalAlignment="Stretch"
+                    TextWrapping="Wrap"
+                    Text="Текст"
+                    ToolTip="Текст"
+                    GotFocus="TextBox_GotFocus"
+                    LostFocus="TextBox_LostFocus"
+                    />
+            </ScrollViewer>
+            <ScrollViewer CanContentScroll="True" Height="60">
+                <TextBox 
+                    x:Name="txtOutput"
+                    VerticalAlignment="Stretch"
+                    TextWrapping="Wrap"
+                    Text="Шифр"
+                    ToolTip="Шифр"
+                    GotFocus="TextBox_GotFocus"
+                    LostFocus="TextBox_LostFocus"
+                    />
+            </ScrollViewer>
+        </StackPanel>
     </Grid>
 </Window>

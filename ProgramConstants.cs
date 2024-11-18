@@ -2,6 +2,10 @@
 {
     class ProgramConstants
     {
+        public static readonly string RSA_ERROR_HEADER                = "Ошибка работы RSA";
+        public static readonly string RSA_WRONG_KEYS_DESCRIPTION      = "Открытый и закрытый ключи не подходят, т.к. сообщение нельзя однозначно шифровать и расшифровать.";
+        public static readonly string RSA_EMPTY_FIELDS                = "Ни одно поле (Открытая экспонента, Закрытая экспонента, Произведение простых чисел) не должно быть пустым!";
+
         public static readonly string KUZNECHIK_ERROR_HEADER          = "Ошибка работы Кузнечика";
         public static readonly string KEY1_INCOMPLETE_DESCRIPTION     = "1-ый ключ не равен по длине 16 байт. Длина ключа: {0} байт.";
         public static readonly string KEY2_INCOMPLETE_DESCRIPTION     = "2-ой ключ не равен по длине 16 байт. Длина ключа: {0} байт.";

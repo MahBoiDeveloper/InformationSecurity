@@ -62,6 +62,12 @@ namespace InformationSecurity
         private BigInteger closeExponent_D;
 
         public RSA()                                 => CalculateKeys();
+        public RSA(BigInteger openExp, BigInteger closedExp, BigInteger multiplication)
+        {
+            openExponent_E = openExp;
+            closeExponent_D = closedExp;
+            multiplicationOfPAndQ_N = multiplication;
+        }
         private BigInteger Encrypt(BigInteger input) => BigInteger.ModPow(input, openExponent_E, multiplicationOfPAndQ_N);
         public  byte[]     Encrypt(byte[] input)     => Encrypt(new BigInteger(input)).ToByteArray();
         public  string     Encrypt(string input)     => new BigInteger(Encrypt(Encoding.Default.GetBytes(input))).ToString();

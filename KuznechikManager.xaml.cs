@@ -57,10 +57,7 @@ namespace InformationSecurity
             File.WriteAllText(ProgramConstants.KUZNECHIK_JSON, JsonSerializer.Serialize(Database, new JsonSerializerOptions { WriteIndented = true }));
         }
 
-        private void btnReturn_Click(object sender, RoutedEventArgs e)
-        {
-            Close();
-        }
+        private void btnReturn_Click(object sender, RoutedEventArgs e) => Close();
 
         private void TextBox_GotFocus(object sender, RoutedEventArgs e)
         {
@@ -122,7 +119,10 @@ namespace InformationSecurity
         private void btnSaveToTable_Click(object sender, RoutedEventArgs e)
         {
             if (IsTextBoxEmpty(ref txtInput) || IsTextBoxEmpty(ref txtOutput))
+            {
                 MessageBox.Show(ProgramConstants.NO_DATA_TO_SAVE_DESCRIPTION, ProgramConstants.KUZNECHIK_ERROR_HEADER);
+                return;
+            }
 
             CurrentView.Add(new KuznechikData {
                 user = Authentication.CurrentUser,
