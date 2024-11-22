@@ -58,5 +58,11 @@ namespace InformationSecurity
             RSAManager rm = new RSAManager();
             rm.ShowDialog();
         }
+
+        private void DS_Click(object sender, RoutedEventArgs e)
+        {
+            DigitalSignatureManager dsm = new DigitalSignatureManager();
+            dsm.ShowDialog();
+        }
     }
 }

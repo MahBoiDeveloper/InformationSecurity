@@ -40,7 +40,7 @@
             HorizontalAlignment="Stretch"
             Name="ЭЦП"
             Content="ЭЦП"
-            IsEnabled="False"
+            Click="DS_Click"
             />
         <Button
             Grid.Row="2" Grid.Column="2"

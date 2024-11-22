@@ -1,0 +1,103 @@
+﻿<Window x:Class="InformationSecurity.DigitalSignatureManager"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:InformationSecurity"
+        mc:Ignorable="d"
+        Title="Лабка ИБ — ЭЦП" Height="450" Width="800">
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="0.5*" />
+        </Grid.RowDefinitions>
+        <DockPanel
+            Grid.Row="0"
+            HorizontalAlignment="Left"
+            >
+            <Button
+                Content="Сохранить изменения"
+                Name="btnSaveChanges"
+                Click="btnSaveChanges_Click"
+                />
+            <Button
+                Name="btnExit"
+                Margin="5, 0, 0, 0"
+                Content="Выйти"
+                Click="btnExit_Click"
+                />
+        </DockPanel>
+        <DataGrid
+            Grid.Row="1"
+            VerticalScrollBarVisibility="Auto"
+            VerticalAlignment="Top"
+            AutoGenerateColumns="False"
+            IsTextSearchEnabled="True"
+            CanUserDeleteRows="False"
+            CanUserAddRows="False"
+            CanUserSortColumns="True"
+            x:Name="dgData" 
+            >
+            <DataGrid.Columns>
+                <DataGridTextColumn x:Name="clmLogin" Binding="{Binding user,            UpdateSourceTrigger=PropertyChanged}" Header="Логин"/>
+                <DataGridTextColumn IsReadOnly="True" Binding="{Binding file_name,       UpdateSourceTrigger=PropertyChanged}" Header="Название файла"/>
+                <DataGridTextColumn IsReadOnly="True" Binding="{Binding hash,            UpdateSourceTrigger=PropertyChanged}" Header="Хэш документа"/>
+                <DataGridTextColumn IsReadOnly="True" Binding="{Binding cipher,          UpdateSourceTrigger=PropertyChanged}" Header="Шифр"/>
+                <DataGridTextColumn IsReadOnly="True" Binding="{Binding open_exponent,   UpdateSourceTrigger=PropertyChanged}" Header="Открытая экспонента"/>
+                <DataGridTextColumn IsReadOnly="True" Binding="{Binding closed_exponent, UpdateSourceTrigger=PropertyChanged}" Header="Закрытая экспонента"/>
+                <DataGridTextColumn IsReadOnly="True" Binding="{Binding multiplication,  UpdateSourceTrigger=PropertyChanged}" Header="Произведение простых"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <DockPanel 
+            Grid.Row="2"
+            Margin="0, 10" 
+            >
+            <Button 
+                Name="btnChooseFile" 
+                Content="Выберите файл"
+                Click="btnChooseFile_Click"
+                />
+            <TextBlock
+                Margin="10,0,0,0"
+                x:Name="txtFileName"
+                Text="Файл не выбран"
+                />
+            <Button
+                x:Name="btnSaveToTable"
+                HorizontalAlignment="Right"
+                Visibility="Hidden"
+                Content="Подписать"
+                Click="btnSaveToTable_Click"
+                />
+        </DockPanel>
+        <StackPanel
+            Grid.Row="3"
+            VerticalAlignment="Top"
+            >
+            <TextBox
+                x:Name="txtHash"
+                Background="Transparent"
+                BorderThickness="0"
+                Text="Хеш"
+                ToolTip="Хеш"
+                IsReadOnly="True"
+                />
+            <ScrollViewer 
+                VerticalScrollBarVisibility="Visible" 
+                CanContentScroll="True"
+                >
+                <TextBox
+                    x:Name="txtCipher"
+                    Background="Transparent"
+                    BorderThickness="0"
+                    TextWrapping="Wrap"
+                    IsReadOnly="True"
+                    Text="Шифр"
+                    ToolTip="Шифр"
+                    />
+            </ScrollViewer>
+        </StackPanel>
+    </Grid>
+</Window>

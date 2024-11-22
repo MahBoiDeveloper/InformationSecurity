@@ -9,6 +9,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="OfficeIMO.Word" Version="0.20.0" />
+    <PackageReference Include="SautinSoft.Document" Version="2024.11.20" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Resources\DigitalSignature.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="Resources\Kuznechik.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

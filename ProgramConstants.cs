@@ -2,6 +2,9 @@
 {
     class ProgramConstants
     {
+        public static readonly string DS_ERROR_HEADER                 = "Ошибка работы ЭЦП";
+        public static readonly string DS_NO_DATA_DESCRIPTION          = "Отсутствуют данные для сохранения в таблицу.";
+
         public static readonly string RSA_ERROR_HEADER                = "Ошибка работы RSA";
         public static readonly string RSA_WRONG_KEYS_DESCRIPTION      = "Открытый и закрытый ключи не подходят, т.к. сообщение нельзя однозначно шифровать и расшифровать.";
         public static readonly string RSA_EMPTY_FIELDS                = "Ни одно поле (Открытая экспонента, Закрытая экспонента, Произведение простых чисел) не должно быть пустым!";
@@ -22,10 +25,11 @@
         public static readonly string EMPTY_LOGIN_ERROR_DESCTIPTION   = "Авторизация под пустым логином невозможна!";
         public static readonly string SPEC_SYMBOLS_ERROR_DESCTIPTION  = "Использование специальных символов запрещено!";
 
-        public static readonly string SALTS_JSON     = "Resources\\Salts.json";
-        public static readonly string USERS_JSON     = "Resources\\Users.json";
-        public static readonly string RSA_JSON       = "Resources\\RSA.json";
-        public static readonly string KUZNECHIK_JSON = "Resources\\Kuznechik.json";
-        public static readonly string DATABASE_JSON  = "Resources\\Database.json";
+        public static readonly string SALTS_JSON                      = "Resources\\Salts.json";
+        public static readonly string USERS_JSON                      = "Resources\\Users.json";
+        public static readonly string RSA_JSON                        = "Resources\\RSA.json";
+        public static readonly string KUZNECHIK_JSON                  = "Resources\\Kuznechik.json";
+        public static readonly string DATABASE_JSON                   = "Resources\\Database.json";
+        public static readonly string DIGITAL_SIGNATURE_JSON          = "Resources\\DigitalSignature.json";
     }
 }
