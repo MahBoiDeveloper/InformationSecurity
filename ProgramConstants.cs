@@ -31,5 +31,7 @@
         public static readonly string KUZNECHIK_JSON                  = "Resources\\Kuznechik.json";
         public static readonly string DATABASE_JSON                   = "Resources\\Database.json";
         public static readonly string DIGITAL_SIGNATURE_JSON          = "Resources\\DigitalSignature.json";
+
+        public static readonly string DIGITAL_SIGNATURE_PNG           = "Resources\\ЭЦП.png";
     }
 }

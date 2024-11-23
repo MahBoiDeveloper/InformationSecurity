@@ -18,14 +18,9 @@
             HorizontalAlignment="Left"
             >
             <Button
-                Content="Сохранить изменения"
-                Name="btnSaveChanges"
-                Click="btnSaveChanges_Click"
-                />
-            <Button
                 Name="btnExit"
                 Margin="5, 0, 0, 0"
-                Content="Выйти"
+                Content="Сохранить и выйти"
                 Click="btnExit_Click"
                 />
         </DockPanel>
@@ -59,10 +54,14 @@
                 Content="Выберите файл"
                 Click="btnChooseFile_Click"
                 />
-            <TextBlock
+            <TextBox
                 Margin="10,0,0,0"
                 x:Name="txtFileName"
                 Text="Файл не выбран"
+                ToolTip="Файл не выбран"
+                Background="Transparent"
+                BorderThickness="0"
+                IsReadOnly="True"
                 />
             <Button
                 x:Name="btnSaveToTable"
