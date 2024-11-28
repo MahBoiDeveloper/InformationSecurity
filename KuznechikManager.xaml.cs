@@ -1,12 +1,8 @@
-﻿using System.Collections.Specialized;
-using System.IO;
-using System.Runtime.ExceptionServices;
+﻿using System.IO;
 using System.Text;
 using System.Text.Json;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Input;
-using static InformationSecurity.Authentication;
 
 namespace InformationSecurity
 {
@@ -28,6 +24,8 @@ namespace InformationSecurity
 
         private byte[] key1;
         private byte[] key2;
+
+        public static string[] Keys;
 
         public KuznechikManager()
         {
@@ -126,8 +124,8 @@ namespace InformationSecurity
 
             CurrentView.Add(new KuznechikData {
                 user = Authentication.CurrentUser,
-                first_key = Convert.ToHexString(key1),
-                second_key = Convert.ToHexString(key2),
+                first_key = Keys == null? Convert.ToHexString(key1) : Keys[0],
+                second_key = Keys == null ? Convert.ToHexString(key2) : Keys[1],
                 message = txtInput.Text,
                 cipher = txtOutput.Text
             });
@@ -163,11 +161,20 @@ namespace InformationSecurity
                 key1 = Encoding.Default.GetBytes(txtKey1.Text);
 
             if (IsTextBoxEmpty(ref txtKey2))
-                key2 = Kuznechik.FirstKey;
+                key2 = Kuznechik.SecondKey;
             else
                 key2 = Encoding.Default.GetBytes(txtKey2.Text);
 
-            return new Kuznechik(key1, key2);
+            if (Keys == null)
+                return new Kuznechik(key1, key2);
+            else
+                return new Kuznechik(Keys);
+        }
+
+        private void btnSetAllKeys_Click(object sender, RoutedEventArgs e)
+        {
+            KuznechikKeysSetter kuznechikKeysSetter = new KuznechikKeysSetter();
+            kuznechikKeysSetter.ShowDialog();
         }
     }
 }

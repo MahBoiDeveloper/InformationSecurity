@@ -1,0 +1,134 @@
+﻿<Window x:Class="InformationSecurity.KuznechikKeysSetter"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:InformationSecurity"
+        mc:Ignorable="d"
+        Title="Лабка ИБ — Задание ключей кузи" Height="350" Width="400">
+    <Grid Margin="10">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        <StackPanel
+            Margin="2"
+            Grid.Column="0"
+            >
+            <TextBox
+                IsReadOnly="True"
+                Text="1-ый   ключ"
+                />
+            <TextBox
+                IsReadOnly="True"
+                Text="2-ой   ключ"
+                />
+            <TextBox
+                IsReadOnly="True"
+                Text="3-ой   ключ"
+                />
+            <TextBox
+                IsReadOnly="True"
+                Text="4-ый   ключ"
+                />
+            <TextBox
+                IsReadOnly="True"
+                Text="5-ый   ключ"
+                />
+            <TextBox
+                IsReadOnly="True"
+                Text="6-ой   ключ"
+                />
+            <TextBox
+                IsReadOnly="True"
+                Text="7-ой   ключ"
+                />
+            <TextBox
+                IsReadOnly="True"
+                Text="8-ой   ключ"
+                />
+            <TextBox
+                IsReadOnly="True"
+                Text="9-ый   ключ"
+                />
+            <TextBox
+                IsReadOnly="True"
+                Text="10-ый ключ"
+                />
+        </StackPanel>
+        <StackPanel 
+            Margin="2"
+            Grid.Column="1"
+            >
+            <TextBox
+                x:Name="txt1"
+                Text="8899aabbccddeeff0011223344556677"
+                />
+            <TextBox
+                x:Name="txt2"
+                Text="fedcba98765432100123456789abcdef"
+                />
+            <TextBox
+                x:Name="txt3"
+                Text="db31485315694343228d6aef8cc78c44"
+                />
+            <TextBox
+                x:Name="txt4"
+                Text="3d4553d8e9cfec6815ebadc40a9ffd04"
+                />
+            <TextBox
+                x:Name="txt5"
+                Text="57646468c44a5e28d3e59246f429f1ac"
+                />
+            <TextBox
+                x:Name="txt6"
+                Text="bd079435165c6432b532e82834da581b"
+                />
+            <TextBox
+                x:Name="txt7"
+                Text="51e640757e8745de705727265a0098b1"
+                />
+            <TextBox
+                x:Name="txt8"
+                Text="5a7925017b9fdd3ed72a91a22286f984"
+                />
+            <TextBox
+                x:Name="txt9"
+                Text="bb44e25378c73123a5f32f73cdb6e517"
+                />
+            <TextBox
+                x:Name="txt10"
+                Text="72e9dd7416bcf45b755dbaa88e4a4043"
+                />
+        </StackPanel>
+        <DockPanel
+            Grid.Column="1"
+            Grid.Row="1"
+            VerticalAlignment="Top"
+            HorizontalAlignment="Left"
+            >
+            <Button
+                x:Name="btnSave"
+                Content="Сохранить"
+                Click="btnSave_Click"
+                />
+            <Button
+                Margin="5,0,0,0"
+                x:Name="btnExit"
+                Content="Выйти"
+                Click="btnExit_Click"
+                />
+            <Button
+                Margin="5,0,0,0"
+                x:Name="btnRandom"
+                Content="Случайные ключи"
+                Click="btnRandom_Click"
+                />
+
+        </DockPanel>
+    </Grid>
+</Window>

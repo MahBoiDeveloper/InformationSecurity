@@ -76,6 +76,12 @@
                     x:Name="btnSaveToTable"
                     Click="btnSaveToTable_Click" 
                     />
+                <Button
+                    Margin="5,0,0,0"
+                    Content="Указать все ключи"
+                    x:Name="btnSetAllKeys"
+                    Click="btnSetAllKeys_Click"
+                    />
             </StackPanel>
             <TextBox 
                 x:Name="txtKey1"

@@ -1,4 +1,5 @@
 ﻿using System.Text;
+using System.Windows.Input;
 
 namespace InformationSecurity
 {
@@ -113,7 +114,7 @@ namespace InformationSecurity
         /// <summary>ы
         /// Массив для хранения ключей.
         /// </summary>
-        private byte[][] KEY = new byte[10][];
+        public byte[][] KEY = new byte[10][];
         #endregion
 
         #region Algorithm mathematics
@@ -298,6 +299,26 @@ namespace InformationSecurity
         public Kuznechik()                         => KeyGen(Kuznechik.FirstKey, Kuznechik.SecondKey);
         public Kuznechik(byte[] key1, byte[] key2) => KeyGen(key1, key2);
         public Kuznechik(string key1, string key2) => KeyGen(Encoding.Default.GetBytes(key1), Encoding.Default.GetBytes(key2));
+
+        public Kuznechik(string[] keys)
+        {
+            if (keys.Length != 10)
+                throw new Exception("Переданные ключи не содержат все необходимые ключи.");
+
+            foreach (var key in keys)
+            {
+                int len = Convert.FromHexString(key).Length;
+                if (Convert.FromHexString(key).Length != BLOCK_SIZE)
+                    throw new Exception("Ключ " + key + " не подходит по длине.");
+            }
+
+            KeyGen(Encoding.Default.GetBytes(keys[0]), Encoding.Default.GetBytes(keys[1]));
+
+            //int i = 0;
+            //foreach (string key in keys)
+            //    if (Convert.ToHexString(KEY[i++]) != key)
+            //        throw new Exception("Переданные ключи не проходят проверку!");
+        }
 
         #region Encrypting and decrypting
         /// <summary>
