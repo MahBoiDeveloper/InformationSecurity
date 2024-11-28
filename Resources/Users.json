@@ -22,5 +22,11 @@
     "password": "1",
     "allowed_local_account": "PC\\PC",
     "code": "2"
+  },
+  {
+    "login": "user01",
+    "password": "1",
+    "allowed_local_account": "PC\\PC",
+    "code": "1"
   }
 ]
